@@ -2,6 +2,8 @@
 
 export(suso_gql_addusertomap)
 export(suso_gql_assignments)
+export(suso_gql_deletemap)
+export(suso_gql_deleteuserfrommap)
 export(suso_gql_interviews)
 export(suso_gql_mapreport)
 export(suso_gql_maps)
