@@ -16,7 +16,7 @@ only contains a very rudimentary documentation.
 
 This is currently a beta version, which means the package is under
 (active) development. It is recommended that only users who are familiar
-on how to use packages in development should use this pacakage. And
+on how to use packages in development should use this package. And
 certainly users are also invited to suggest improvements or to add their
 own functions to the package by forking.
 
