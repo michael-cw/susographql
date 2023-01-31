@@ -1,0 +1,10 @@
+.Rproj.user
+.Rhistory
+.Rdata
+.httr-oauth
+.DS_Store
+susographql.Rproj
+CREDENTIALS!!REMOVE.R
+tests
+dev
+Meta

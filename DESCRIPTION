@@ -1,0 +1,25 @@
+Package: susographql
+Type: Package
+Title: Survey Solutions GraphQL API package
+Version: 0.1.0
+Authors@R: person("Michael", "Wild", , "mwild@worldbank.org", role = c("cre", "aut"))
+Description: This packages implements all the currently available
+    calls to the Survey Solutions GraphQL API including the latest one to upload
+    maps. Its build purely on the httr package and does not use any other of the 
+    available graphql client packages.
+License: GPL (>= 3)
+Encoding: UTF-8
+LazyData: true
+Imports:
+    httr,
+    jsonlite,
+    readr,
+    stringr,
+    data.table
+Depends:
+    R (>= 3.3.0)
+RoxygenNote: 7.2.1
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
