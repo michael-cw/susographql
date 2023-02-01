@@ -22,7 +22,13 @@ suso_gql_interviews(
   responsibleName = NULL,
   responsibleRole = NULL,
   status = NULL,
-  supervisorName = NULL
+  supervisorName = NULL,
+  sortby_updateDateUtc = NULL,
+  sortby_notAnsweredCount = NULL,
+  sortby_createdDate = NULL,
+  sortby_errorsCount = NULL,
+  take = NULL,
+  skip = NULL
 )
 }
 \arguments{
@@ -61,6 +67,18 @@ suso_gql_interviews(
 \item{status}{of the interview}
 
 \item{supervisorName}{Name of the supervisor of the responsible user}
+
+\item{sortby_updateDateUtc}{sort by updated at UTC time, either ASC for ascending or DESC for descending}
+
+\item{sortby_notAnsweredCount}{sort by errors count, either ASC for ascending or DESC for descending}
+
+\item{sortby_createdDate}{sort by creation date, either ASC for ascending or DESC for descending}
+
+\item{sortby_errorsCount}{sort by number of errors, either ASC for ascending or DESC for descending}
+
+\item{take}{take the specified integer numeber of maps}
+
+\item{skip}{skip the first integer number of maps}
 }
 \description{
 Allows the user to retrieve filtered or unfiltered interview data.

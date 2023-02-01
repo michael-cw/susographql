@@ -12,7 +12,12 @@ suso_gql_maps(
   fileName = NULL,
   importDateUtc = NULL,
   size = NULL,
-  users = NULL
+  users = NULL,
+  sortby_filename = NULL,
+  sortby_importeddateutc = NULL,
+  sortby_size = NULL,
+  take = NULL,
+  skip = NULL
 )
 }
 \arguments{
@@ -31,6 +36,16 @@ suso_gql_maps(
 \item{size}{Size of the map}
 
 \item{users}{Users to whom the maps are assigned}
+
+\item{sortby_filename}{sort maps by file name, either ASC for ascending or DESC for descending}
+
+\item{sortby_importeddateutc}{sort maps by import date in utc, either ASC for ascending or DESC for descending}
+
+\item{sortby_size}{sort by map size, either ASC for ascending or DESC for descending}
+
+\item{take}{take the specified integer numeber of maps}
+
+\item{skip}{skip the first integer number of maps}
 }
 \description{
 Allows the user to retrieve filtered or unfiltered map data.

@@ -20,6 +20,12 @@
 #' @param responsibleRole Role of the person responsible
 #' @param status of the interview
 #' @param supervisorName Name of the supervisor of the responsible user
+#' @param sortby_updateDateUtc sort by updated at UTC time, either ASC for ascending or DESC for descending
+#' @param sortby_notAnsweredCount sort by errors count, either ASC for ascending or DESC for descending
+#' @param sortby_createdDate sort by creation date, either ASC for ascending or DESC for descending
+#' @param sortby_errorsCount sort by number of errors, either ASC for ascending or DESC for descending
+#' @param take take the specified integer numeber of maps
+#' @param skip skip the first integer number of maps
 #'
 #' @export
 
@@ -42,7 +48,13 @@ suso_gql_interviews <- function(endpoint = NULL,
                                 responsibleName = NULL,
                                 responsibleRole = NULL,
                                 status = NULL,
-                                supervisorName = NULL
+                                supervisorName = NULL,
+                                sortby_updateDateUtc = NULL,
+                                sortby_notAnsweredCount = NULL,
+                                sortby_createdDate = NULL,
+                                sortby_errorsCount = NULL,
+                                take = NULL,
+                                skip = NULL
                                 ) {
   # define the endpoint for your GraphQL server
   stopifnot(
@@ -52,8 +64,8 @@ suso_gql_interviews <- function(endpoint = NULL,
 
   # define your query
   query <- sprintf('
-      query($workspace: String $where: InterviewsFilter){
-          interviews(workspace: $workspace where: $where) {
+      query($workspace: String $where: InterviewsFilter $order: [InterviewSort!] $take: Int $skip: Int){
+          interviews(workspace: $workspace where: $where order: $order take: $take skip: $skip) {
                             totalCount
                             filteredCount
                             nodes {
@@ -134,6 +146,68 @@ suso_gql_interviews <- function(endpoint = NULL,
     variables$where$status$eq <- status
   }
 
+  # sort
+  if (!is.null(sortby_updateDateUtc)) {
+    stopifnot(
+      sortby_updateDateUtc %in% c("ASC", "DESC")
+    )
+    variables$order$updateDateUtc <- sortby_updateDateUtc
+  }
+
+  if (!is.null(sortby_notAnsweredCount)) {
+    stopifnot(
+      sortby_notAnsweredCount %in% c("ASC", "DESC")
+    )
+    variables$order$notAnsweredCount <- sortby_notAnsweredCount
+  }
+
+  if (!is.null(sortby_createdDate)) {
+    stopifnot(
+      sortby_createdDate %in% c("ASC", "DESC")
+    )
+    variables$order$createdDate <- sortby_createdDate
+  }
+
+  if (!is.null(sortby_errorsCount)) {
+    stopifnot(
+      sortby_errorsCount %in% c("ASC", "DESC")
+    )
+    variables$order$errorsCount <- sortby_errorsCount
+  }
+
+  ## sorts missing:
+
+  # status: InterviewStatusOperationFilterInput
+  # interviewMode: InterviewModeOperationFilterInput
+  # questionnaireId: ComparableGuidOperationFilterInput
+  # questionnaireVariable: StringOperationFilterInput
+  # questionnaireVersion: ComparableInt64OperationFilterInput
+  # key: StringOperationFilterInput
+  # clientKey: StringOperationFilterInput
+  # assignmentId: ComparableNullableOfInt32OperationFilterInput
+  # responsibleName: StringOperationFilterInput
+  # responsibleNameLowerCase: StringOperationFilterInput
+  # supervisorName: StringOperationFilterInput
+  # supervisorNameLowerCase: StringOperationFilterInput
+  # responsibleRole: UserRolesOperationFilterInput
+  # receivedByInterviewerAtUtc: ComparableNullableOfDateTimeOperationFilterInput
+  # identifyingData: ListFilterInputTypeOfIdentifyEntityValueFilterInput
+
+
+
+  if (!is.null(take)) {
+    stopifnot(
+      (take%%1==0)
+    )
+    variables$take <- take
+  }
+
+  if (!is.null(skip)) {
+    stopifnot(
+      (skip%%1==0)
+    )
+    variables$skip <- skip
+  }
 
   # create the body of the request
   body <- list(query = query)
