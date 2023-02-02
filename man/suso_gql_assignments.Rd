@@ -14,7 +14,9 @@ suso_gql_assignments(
   questionnaireId = NULL,
   version = NULL,
   responsibleId = NULL,
-  webMode = FALSE
+  webMode = FALSE,
+  take = NULL,
+  skip = NULL
 )
 }
 \arguments{
@@ -37,6 +39,10 @@ suso_gql_assignments(
 \item{responsibleId}{ID of the person currently responsible for the assignment}
 
 \item{webMode}{Boolean for webmode}
+
+\item{take}{take the specified integer numeber of maps}
+
+\item{skip}{skip the first integer number of maps}
 }
 \description{
 Allows the user to retrieve filtered or unfiltered assignment data.

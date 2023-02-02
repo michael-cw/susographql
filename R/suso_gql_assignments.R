@@ -12,6 +12,8 @@
 #' @param version Questionnaire version
 #' @param responsibleId ID of the person currently responsible for the assignment
 #' @param webMode Boolean for webmode
+#' @param take take the specified integer numeber of maps
+#' @param skip skip the first integer number of maps
 #'
 #' @export
 
@@ -25,7 +27,9 @@ suso_gql_assignments <- function(endpoint = NULL,
                                  questionnaireId = NULL,
                                  version = NULL,
                                  responsibleId = NULL,
-                                 webMode = FALSE) {
+                                 webMode = FALSE,
+                                 take = NULL,
+                                 skip = NULL) {
   # define the endpoint for your GraphQL server
   stopifnot(
     !is.null(endpoint)
@@ -33,8 +37,8 @@ suso_gql_assignments <- function(endpoint = NULL,
 
   # define your query
   query <- sprintf('
-      query($workspace: String $where: AssignmentsFilter){
-          assignments(workspace: $workspace where: $where) {
+      query($workspace: String $where: AssignmentsFilter $take: Int $skip: Int){
+          assignments(workspace: $workspace where: $where take: $take skip: $skip) {
                             totalCount
                             filteredCount
                             nodes {
@@ -77,6 +81,20 @@ suso_gql_assignments <- function(endpoint = NULL,
   }
   if (!is.null(webMode)) {
     variables$where$webMode$eq <- webMode
+  }
+
+  if (!is.null(take)) {
+    stopifnot(
+      (take%%1==0)
+    )
+    variables$take <- take
+  }
+
+  if (!is.null(skip)) {
+    stopifnot(
+      (skip%%1==0)
+    )
+    variables$skip <- skip
   }
 
   # create the body of the request
