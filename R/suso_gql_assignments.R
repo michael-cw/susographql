@@ -12,8 +12,8 @@
 #' @param version Questionnaire version
 #' @param responsibleId ID of the person currently responsible for the assignment
 #' @param webMode Boolean for webmode
-#' @param take take the specified integer numeber of maps
-#' @param skip skip the first integer number of maps
+#' @param take take the specified integer numeber of assignments
+#' @param skip skip the first integer number of assignments
 #'
 #' @export
 

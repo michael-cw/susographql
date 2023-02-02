@@ -24,8 +24,8 @@
 #' @param sortby_notAnsweredCount sort by errors count, either ASC for ascending or DESC for descending
 #' @param sortby_createdDate sort by creation date, either ASC for ascending or DESC for descending
 #' @param sortby_errorsCount sort by number of errors, either ASC for ascending or DESC for descending
-#' @param take take the specified integer numeber of maps
-#' @param skip skip the first integer number of maps
+#' @param take take the specified integer numeber of interviews
+#' @param skip skip the first integer number of interviews
 #'
 #' @export
 

@@ -40,9 +40,9 @@ suso_gql_assignments(
 
 \item{webMode}{Boolean for webmode}
 
-\item{take}{take the specified integer numeber of maps}
+\item{take}{take the specified integer numeber of assignments}
 
-\item{skip}{skip the first integer number of maps}
+\item{skip}{skip the first integer number of assignments}
 }
 \description{
 Allows the user to retrieve filtered or unfiltered assignment data.

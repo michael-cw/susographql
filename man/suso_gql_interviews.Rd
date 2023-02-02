@@ -76,9 +76,9 @@ suso_gql_interviews(
 
 \item{sortby_errorsCount}{sort by number of errors, either ASC for ascending or DESC for descending}
 
-\item{take}{take the specified integer numeber of maps}
+\item{take}{take the specified integer numeber of interviews}
 
-\item{skip}{skip the first integer number of maps}
+\item{skip}{skip the first integer number of interviews}
 }
 \description{
 Allows the user to retrieve filtered or unfiltered interview data.

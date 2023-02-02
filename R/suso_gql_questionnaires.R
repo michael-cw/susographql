@@ -8,6 +8,8 @@
 #' @param password API password
 #' @param id Questionnaire ID
 #' @param version Questionnaire version
+#' @param take take the specified integer numeber of questionnaires
+#' @param skip skip the first integer number of questionnaires
 #'
 #' @export
 
@@ -21,7 +23,9 @@ suso_gql_questionnaires <- function(endpoint = NULL,
                                  user = NULL,
                                  password = NULL,
                                  id = NULL,
-                                 version = NULL) {
+                                 version = NULL,
+                                 take = NULL,
+                                 skip = NULL) {
   # define the endpoint for your GraphQL server
   stopifnot(
     !is.null(endpoint)
@@ -29,8 +33,8 @@ suso_gql_questionnaires <- function(endpoint = NULL,
 
   # define your query
   query <- sprintf('
-          query($workspace: String $id: UUID $version: Long){
-            questionnaires(workspace: $workspace id: $id version: $version){
+          query($workspace: String $id: UUID $version: Long $take: Int $skip: Int){
+            questionnaires(workspace: $workspace id: $id version: $version take: $take skip: $skip){
               totalCount
               filteredCount
               nodes {
@@ -63,6 +67,21 @@ suso_gql_questionnaires <- function(endpoint = NULL,
   if (!is.null(version)) {
     variables$version <- version
   }
+
+  if (!is.null(take)) {
+    stopifnot(
+      (take%%1==0)
+    )
+    variables$take <- take
+  }
+
+  if (!is.null(skip)) {
+    stopifnot(
+      (skip%%1==0)
+    )
+    variables$skip <- skip
+  }
+
 
   # create the body of the request
   body <- list(query = query)

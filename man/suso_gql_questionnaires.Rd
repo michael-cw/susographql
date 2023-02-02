@@ -10,7 +10,9 @@ suso_gql_questionnaires(
   user = NULL,
   password = NULL,
   id = NULL,
-  version = NULL
+  version = NULL,
+  take = NULL,
+  skip = NULL
 )
 }
 \arguments{
@@ -25,6 +27,10 @@ suso_gql_questionnaires(
 \item{id}{Questionnaire ID}
 
 \item{version}{Questionnaire version}
+
+\item{take}{take the specified integer numeber of questionnaires}
+
+\item{skip}{skip the first integer number of questionnaires}
 }
 \description{
 Allows the user to retrieve filtered or unfiltered map data.
