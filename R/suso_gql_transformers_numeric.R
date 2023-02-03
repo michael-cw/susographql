@@ -1,4 +1,4 @@
-#' @title Utility Functions for operator selection
+#' @title Utility Functions for numeric operator selection
 #'
 #' @name transformers
 #'
