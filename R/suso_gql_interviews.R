@@ -116,14 +116,17 @@ suso_gql_interviews <- function(endpoint = NULL,
   variables$where<-NULL
 
   if (!is.null(assignmentId)) {
-    variables$where$assignmentId$eq <- assignmentId
+    assignmentId<-checkInput(assignmentId)
+    variables$where$assignmentId <- assignmentId
   }
   if (!is.null(clientKey)) {
     variables$where$clientKey$eq <- clientKey
   }
   if (!is.null(questionnaireId) && !is.null(questionnaireVersion)) {
     variables$where$questionnaireId$id$eq <- questionnaireId
-    variables$where$questionnaireId$version$eq <- version
+
+    version<-checkInput(version)
+    variables$where$questionnaireId$version <- version
   }
   if (!is.null(responsibleName)) {
     variables$where$responsibleNameLowerCase$eq <- tolower(responsibleName)
@@ -132,14 +135,16 @@ suso_gql_interviews <- function(endpoint = NULL,
     variables$where$supervisorNameLowerCase$eq <- tolower(supervisorName)
   }
   if (!is.null(errorsCount)) {
-    variables$where$errorsCount$eq <- errorsCount
+    errorsCount<-checkInput(errorsCount)
+    variables$where$errorsCount <- errorsCount
   }
   if (!is.null(interviewMode)) {
     variables$where$interviewMode$eq <- interviewMode
   }
 
   if (!is.null(notAnsweredCount)) {
-    variables$where$notAnsweredCount$neq <- notAnsweredCount
+    notAnsweredCount<-checkInput(notAnsweredCount)
+    variables$where$notAnsweredCount <- notAnsweredCount
   }
 
   if (!is.null(status)) {

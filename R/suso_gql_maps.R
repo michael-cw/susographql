@@ -82,7 +82,8 @@ suso_gql_maps <- function(endpoint = NULL,
   }
 
   if (!is.null(size)) {
-    variables$where$size$neq <- size
+    size<-checkInput(size)
+    variables$where$size <- size
   }
 
   ## User must be updated!!
