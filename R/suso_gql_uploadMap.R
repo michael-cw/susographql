@@ -34,7 +34,7 @@ suso_gql_uploadmap <- function(endpoint = NULL,
   )
 
   # send the post
-  response <- httr::POST("https://michael-wild-demo.mysurvey.solutions/graphql/",
+  response <- httr::POST(endpoint,
                          body = files,
                          encode = "multipart",
                          #headers = c("Content-Type" = "application/json"),
