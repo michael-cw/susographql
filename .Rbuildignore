@@ -12,3 +12,4 @@ $run_dev.*
 ^CREDENTIALS\!\!REMOVE\.R$
 ^‘NAMESPACE_old$
 ^.*\.RData$
+^\.github$
