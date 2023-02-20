@@ -13,3 +13,6 @@ $run_dev.*
 ^‘NAMESPACE_old$
 ^.*\.RData$
 ^\.github$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
