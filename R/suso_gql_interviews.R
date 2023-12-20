@@ -220,21 +220,18 @@ suso_gql_interviews <- function(endpoint = NULL,
     body$variables <- variables
   }
 
+  # build the url
+  url<-.baseurl_baseauth(endpoint, body, user, password, retry = 3)
 
-  response <- httr::POST(endpoint, body = body,
-                         encode = "json",
-                         httr::content_type_json(),
-                         httr::user_agent("r api v2"),
-                         httr::accept_json(),
-                         httr::authenticate(user, password, type = "basic"))
-
-  # check the status code
-  if (response$status_code != 200) {
-    stop("Error: ", response$status_code)
-  }
-
-  # parse the JSON response
-  result <- httr::content(response, "text", encoding = "UTF-8")
-  result<-jsonlite::fromJSON(result)
+  # perform the request
+  result<-.perform_request(url)
   return(result$data)
 }
+
+
+
+
+
+
+
+

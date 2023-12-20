@@ -12,10 +12,14 @@ Encoding: UTF-8
 LazyData: true
 Imports:
     httr,
+    httr2,
     jsonlite,
     readr,
     stringr,
-    data.table
+    data.table,
+    withr,
+    cli,
+    rlang
 Depends:
     R (>= 3.3.0)
 RoxygenNote: 7.2.3
