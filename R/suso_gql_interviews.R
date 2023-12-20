@@ -123,10 +123,10 @@ suso_gql_interviews <- function(endpoint = NULL,
     variables$where$clientKey$eq <- clientKey
   }
   if (!is.null(questionnaireId) && !is.null(questionnaireVersion)) {
-    variables$where$questionnaireId$id$eq <- questionnaireId
+    variables$where$questionnaireId$eq <- questionnaireId
 
     version<-checkInput(version)
-    variables$where$questionnaireId$version <- version
+    variables$where$questionnaireVersion <- questionnaireVersion
   }
   if (!is.null(responsibleName)) {
     variables$where$responsibleNameLowerCase$eq <- tolower(responsibleName)
@@ -219,7 +219,6 @@ suso_gql_interviews <- function(endpoint = NULL,
   if (!is.null(variables)) {
     body$variables <- variables
   }
-
 
 
   response <- httr::POST(endpoint, body = body,

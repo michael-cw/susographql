@@ -18,7 +18,7 @@ Imports:
     data.table
 Depends:
     R (>= 3.3.0)
-RoxygenNote: 7.2.1
+RoxygenNote: 7.2.3
 Suggests: 
     knitr,
     rmarkdown
