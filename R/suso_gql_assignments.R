@@ -6,6 +6,7 @@
 #' @param workspace Server Workspace, if NULL uses default
 #' @param user your API username
 #' @param password API password
+#' @param token If Survey Solutions server token is provided \emph{apiUser} and \emph{apiPass} will be ignored
 #' @param archived Boolean if the assignment is archived or not
 #' @param id Assignment ID
 #' @param questionnaireId Questionnaire ID
@@ -22,6 +23,7 @@ suso_gql_assignments <- function(endpoint = NULL,
                                  workspace = NULL,
                                  user = NULL,
                                  password = NULL,
+                                 token = NULL,
                                  archived = FALSE,
                                  id = NULL,
                                  questionnaireId = NULL,
@@ -30,10 +32,13 @@ suso_gql_assignments <- function(endpoint = NULL,
                                  webMode = FALSE,
                                  take = NULL,
                                  skip = NULL) {
-  # define the endpoint for your GraphQL server
-  stopifnot(
-    !is.null(endpoint)
-  )
+  # workspace default
+  workspace<-.ws_default(ws = workspace)
+
+
+  # check inputs
+  .check_basics(token, endpoint, user, password)
+
 
   # define your query
   query <- sprintf('
@@ -105,20 +110,11 @@ suso_gql_assignments <- function(endpoint = NULL,
 
 
 
-  response <- httr::POST(endpoint, body = body,
-                         encode = "json",
-                         httr::content_type_json(),
-                         httr::user_agent("r api v2"),
-                         httr::accept_json(),
-                         httr::authenticate(user, password, type = "basic"))
+  # build the url
+  url<-.baseurl_baseauth(endpoint, body, user, password, retry = 3)
 
-  # check the status code
-  if (response$status_code != 200) {
-    stop("Error: ", response$status_code)
-  }
+  # perform the request
+  result<-.perform_request(url)
 
-  # parse the JSON response
-  result <- httr::content(response, "text", encoding = "UTF-8")
-  result<-jsonlite::fromJSON(result)
   return(result$data)
 }

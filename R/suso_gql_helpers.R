@@ -130,4 +130,50 @@
   return(result)
 }
 
+#' helper functions  to check basics
+#'
+#' @keywords internal
+#' @noRd
+#'
+.check_basics<- function(token, server, apiUser, apiPass) {
+  withr::with_options(
+    list(rlang_backtrace_on_error = "none"),
+    {
+      if(is.null(token)){
+        if(is.null(server) | is.null(apiUser) | is.null(apiPass)){
+          cli::cli_abort(c("x" = "Please provide either a token with endpoint, or apiUser and apiPass (with endpoint)."))
+        }
+      } else {
+        if(is.null(server)){
+          cli::cli_abort(c("x" = "Please provide a endpoint address"))
+        }
+      }
+
+      # make sure graphql in endpoint
+      if(!(grepl("/graphql$", server))) {
+        cli::cli_abort(c("x" = "Endpoint must include /graphql! Like: https://[myserver]/graphql"))
+      }
+
+    }
+  )
+}
+
+#' helper functions  for workspace
+#'
+#' @keywords internal
+#' @noRd
+#'
+.ws_default<-function(ws=NULL){
+  ## workspace default
+  if(!is.null(ws)) {
+    # margs<-suso_getWorkspace()$Name
+    # workspace<-match.arg(workspace, margs)
+    ws<-ws
+  } else {
+    if(interactive()) cli::cli_alert_info("No workspace provided. Using primary workspace.")
+    ws<-"primary"
+  }
+  return(ws)
+}
+
 

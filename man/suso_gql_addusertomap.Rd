@@ -9,6 +9,7 @@ suso_gql_addusertomap(
   workspace = NULL,
   user = NULL,
   password = NULL,
+  token = NULL,
   fileName = NULL,
   userName = NULL
 )
@@ -21,6 +22,8 @@ suso_gql_addusertomap(
 \item{user}{your API username}
 
 \item{password}{your API user password}
+
+\item{token}{If Survey Solutions server token is provided \emph{apiUser} and \emph{apiPass} will be ignored}
 
 \item{fileName}{the name of the map file on the server}
 

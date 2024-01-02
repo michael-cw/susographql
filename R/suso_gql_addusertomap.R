@@ -6,6 +6,7 @@
 #' @param workspace Server Workspace, if NULL uses default
 #' @param user your API username
 #' @param password your API user password
+#' @param token If Survey Solutions server token is provided \emph{apiUser} and \emph{apiPass} will be ignored
 #' @param fileName the name of the map file on the server
 #' @param userName the name of the interviewer to whom the map will be assigned to
 #'
@@ -15,15 +16,26 @@
 
 
 suso_gql_addusertomap <- function(endpoint = NULL,
-                               workspace = NULL,
-                               user = NULL,
-                               password = NULL,
-                               fileName = NULL,
-                               userName = NULL) {
-  # define the endpoint for your GraphQL server
-  stopifnot(
-    !is.null(endpoint)
-  )
+                                  workspace = NULL,
+                                  user = NULL,
+                                  password = NULL,
+                                  token = NULL,
+                                  fileName = NULL,
+                                  userName = NULL) {
+  # workspace default
+  workspace<-.ws_default(ws = workspace)
+
+  # check inputs
+  .check_basics(token, endpoint, user, password)
+
+  if(is.null(userName) || length(userName)!=1) {
+    cli::cli_abort(c("x" = "No valid SINGLE user name provided."))
+  }
+
+  if(is.null(fileName) || length(fileName)!=1) {
+    cli::cli_abort(c("x" = "No valid SINGLE fileName provided."))
+  }
+
 
   # define your query
   query <- sprintf('
@@ -70,22 +82,12 @@ suso_gql_addusertomap <- function(endpoint = NULL,
     body$variables <- variables
   }
 
+  # build the url
+  url<-.baseurl_baseauth(endpoint, body, user, password, retry = 3)
 
+  # perform the request
+  result<-.perform_request(url)
 
-  response <- httr::POST(endpoint, body = body,
-                         encode = "json",
-                         httr::content_type_json(),
-                         httr::user_agent("r api v2"),
-                         httr::accept_json(),
-                         httr::authenticate(user, password, type = "basic"))
-
-  # check the status code
-  if (response$status_code != 200) {
-    stop("Error: ", response$status_code)
-  }
-
-  # parse the JSON response
-  result <- httr::content(response, "text", encoding = "UTF-8")
-  result<-jsonlite::fromJSON(result)
   return(result$data)
+
 }

@@ -9,6 +9,7 @@ suso_gql_interviews(
   workspace = NULL,
   user = NULL,
   password = NULL,
+  token = NULL,
   assignmentId = NULL,
   clientKey = NULL,
   createdDate = NULL,
@@ -39,6 +40,8 @@ suso_gql_interviews(
 \item{user}{your API username}
 
 \item{password}{API password}
+
+\item{token}{If Survey Solutions server token is provided \emph{apiUser} and \emph{apiPass} will be ignored}
 
 \item{assignmentId}{Assignment ID}
 

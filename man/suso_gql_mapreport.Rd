@@ -9,6 +9,7 @@ suso_gql_mapreport(
   workspace = NULL,
   user = NULL,
   password = NULL,
+  token = NULL,
   questionnaireId = NULL,
   questionnaireVersion = NULL,
   variable = NULL,
@@ -40,6 +41,8 @@ suso_gql_mapreport(
 \item{user}{your API username}
 
 \item{password}{API password}
+
+\item{token}{If Survey Solutions server token is provided \emph{apiUser} and \emph{apiPass} will be ignored}
 
 \item{questionnaireId}{the questionnnaire id}
 

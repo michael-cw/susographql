@@ -6,48 +6,66 @@
 #' @param workspace Server Workspace, if NULL uses default
 #' @param user your API username
 #' @param password API password
+#' @param token If Survey Solutions server token is provided \emph{apiUser} and \emph{apiPass} will be ignored
 #' @param path_to_zip path to zip file
 #'
 #' @export
 
 
 suso_gql_uploadmap <- function(endpoint = NULL,
-                                  workspace = NULL,
-                                  user = NULL,
-                                  password = NULL,
-                                  path_to_zip = NULL) {
-  # Check parameters
+                               workspace = NULL,
+                               user = NULL,
+                               token = NULL,
+                               password = NULL,
+                               path_to_zip = NULL) {
+  # workspace default
+  workspace<-.ws_default(ws = workspace)
+
+  # Check for essential variables
+  .check_basics(token, endpoint, user, password)
+
   stopifnot(
-    !is.null(endpoint),
-    !is.null(workspace)
+    !is.null(path_to_zip)
   )
 
   # define the mutation
-  mutation<-sprintf('{"query":"mutation($file: Upload! $workspace: String) {uploadMap(file: $file workspace: $workspace) {xMaxVal yMaxVal xMinVal yMinVal wkid fileName size maxScale minScale shapeType importDateUtc uploadedBy users { userName }}}","variables":{"file":null  "workspace": "%s"}}',
-                    workspace)
+  mutation<-glue::glue('{"query":"mutation(\\
+  $file: Upload! $workspace: String) \\
+  {uploadMap(file: $file workspace: $workspace) \\
+  {xMaxVal\\
+   yMaxVal\\
+   xMinVal\\
+   yMinVal\\
+   wkid\\
+   fileName\\
+   size\\
+   maxScale\\
+   minScale\\
+   shapeType\\
+   importDateUtc\\
+   uploadedBy\\
+   users { userName }}}",\\
+  "variables":{"file":null  "workspace": "<<workspace>>"}}',
+                       .open = "<<", .close = ">>")
 
-  # create the form
-  files = list(
-    `operations` = mutation,
-    `map` = '{ "0": ["variables.file"] }',
-    `0` = httr::upload_file(path_to_zip, type = "application/zip")
-  )
+  # build the url with the form
+  url<-httr2::request(endpoint) |>
+    httr2::req_body_multipart(
+      `operations` = mutation,
+      `map` = '{ "0": ["variables.file"] }',
+      `0` = curl::form_file(path_to_zip, type = "application/zip")
+    ) |>
+    # !!  IMPORTANT HEADER FOR MAPUPLOAD
+    httr2::req_headers(`GraphQL-Preflight` = 1) |>
+    httr2::req_method("POST") |>
+    httr2::req_user_agent("r api v2") |>
+    httr2::req_auth_basic(user, password) |>
+    httr2::req_retry(
+      max_tries = 3
+    )
 
-  # send the post
-  response <- httr::POST(endpoint,
-                         body = files,
-                         encode = "multipart",
-                         #headers = c("Content-Type" = "application/json"),
-                         #httr::content_type_json(),
-                         httr::user_agent("r api v2"),
-                         httr::accept_json(),
-                         httr::authenticate(user, password, type = "basic"))
-  # check the status code
-  if (response$status_code != 200) {
-    stop("Error: ", response$status_code)
-  }
+  # perform the request
+  result<-.perform_request(url)
 
-  result <- httr::content(response, "text", encoding = "UTF-8")
-  result<-jsonlite::fromJSON(result)
   return(result$data)
 }

@@ -8,6 +8,7 @@ suso_gql_deleteuserfrommap(
   endpoint = NULL,
   workspace = NULL,
   user = NULL,
+  token = NULL,
   password = NULL,
   fileName = NULL,
   userName = NULL
@@ -19,6 +20,8 @@ suso_gql_deleteuserfrommap(
 \item{workspace}{Server Workspace, if NULL uses default}
 
 \item{user}{your API username}
+
+\item{token}{If Survey Solutions server token is provided \emph{apiUser} and \emph{apiPass} will be ignored}
 
 \item{password}{your API user password}
 

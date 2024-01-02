@@ -9,6 +9,7 @@ suso_gql_questionnaireitems(
   workspace = NULL,
   user = NULL,
   password = NULL,
+  token = NULL,
   id = NULL,
   version = NULL,
   variable = NULL,
@@ -26,6 +27,8 @@ suso_gql_questionnaireitems(
 \item{user}{your API username}
 
 \item{password}{API password}
+
+\item{token}{If Survey Solutions server token is provided \emph{apiUser} and \emph{apiPass} will be ignored}
 
 \item{id}{Questionnaire ID}
 

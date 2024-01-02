@@ -9,6 +9,7 @@ suso_gql_assignments(
   workspace = NULL,
   user = NULL,
   password = NULL,
+  token = NULL,
   archived = FALSE,
   id = NULL,
   questionnaireId = NULL,
@@ -27,6 +28,8 @@ suso_gql_assignments(
 \item{user}{your API username}
 
 \item{password}{API password}
+
+\item{token}{If Survey Solutions server token is provided \emph{apiUser} and \emph{apiPass} will be ignored}
 
 \item{archived}{Boolean if the assignment is archived or not}
 

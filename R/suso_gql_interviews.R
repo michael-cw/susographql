@@ -6,6 +6,7 @@
 #' @param workspace Server Workspace, if NULL uses default
 #' @param user your API username
 #' @param password API password
+#' @param token If Survey Solutions server token is provided \emph{apiUser} and \emph{apiPass} will be ignored
 #' @param assignmentId Assignment ID
 #' @param clientKey Interview key
 #' @param createdDate Creation data of the interview
@@ -35,6 +36,7 @@ suso_gql_interviews <- function(endpoint = NULL,
                                 workspace = NULL,
                                 user = NULL,
                                 password = NULL,
+                                token = NULL,
                                 assignmentId = NULL,
                                 clientKey = NULL,
                                 createdDate = NULL,
@@ -56,10 +58,12 @@ suso_gql_interviews <- function(endpoint = NULL,
                                 take = NULL,
                                 skip = NULL
                                 ) {
-  # define the endpoint for your GraphQL server
-  stopifnot(
-    !is.null(endpoint)
-  )
+  # workspace default
+  workspace<-.ws_default(ws = workspace)
+
+  # check inputs
+  .check_basics(token, endpoint, user, password)
+
 
 
   # define your query

@@ -8,6 +8,7 @@ suso_gql_uploadmap(
   endpoint = NULL,
   workspace = NULL,
   user = NULL,
+  token = NULL,
   password = NULL,
   path_to_zip = NULL
 )
@@ -18,6 +19,8 @@ suso_gql_uploadmap(
 \item{workspace}{Server Workspace, if NULL uses default}
 
 \item{user}{your API username}
+
+\item{token}{If Survey Solutions server token is provided \emph{apiUser} and \emph{apiPass} will be ignored}
 
 \item{password}{API password}
 

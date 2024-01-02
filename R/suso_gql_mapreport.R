@@ -6,6 +6,7 @@
 #' @param workspace Server Workspace, if NULL uses default
 #' @param user your API username
 #' @param password API password
+#' @param token If Survey Solutions server token is provided \emph{apiUser} and \emph{apiPass} will be ignored
 #' @param questionnaireId the questionnnaire id
 #' @param questionnaireVersion the questionnaire version
 #' @param variable Variable(s) of interest
@@ -39,36 +40,41 @@
 
 
 suso_gql_mapreport <- function(endpoint = NULL,
-                                workspace = NULL,
-                                user = NULL,
-                                password = NULL,
-                                questionnaireId = NULL,
-                                questionnaireVersion = NULL,
-                                variable = NULL,
-                                zoom = 1,
-                                clientMapWidth = 0,
-                                west = -180,
-                                east = 180,
-                                north = 90,
-                                south = -90,
-                                assignmentId = NULL,
-                                clientKey = NULL,
-                                createdDate = NULL,
-                                errorsCount = NULL,
-                                identifyingData = NULL,
-                                interviewMode = NULL,
-                                notAnsweredCount = NULL,
-                                questionnaireVariable = NULL,
-                                responsibleName = NULL,
-                                responsibleRole = NULL,
-                                status = NULL,
-                                supervisorName = NULL
+                               workspace = NULL,
+                               user = NULL,
+                               password = NULL,
+                               token = NULL,
+                               questionnaireId = NULL,
+                               questionnaireVersion = NULL,
+                               variable = NULL,
+                               zoom = 1,
+                               clientMapWidth = 0,
+                               west = -180,
+                               east = 180,
+                               north = 90,
+                               south = -90,
+                               assignmentId = NULL,
+                               clientKey = NULL,
+                               createdDate = NULL,
+                               errorsCount = NULL,
+                               identifyingData = NULL,
+                               interviewMode = NULL,
+                               notAnsweredCount = NULL,
+                               questionnaireVariable = NULL,
+                               responsibleName = NULL,
+                               responsibleRole = NULL,
+                               status = NULL,
+                               supervisorName = NULL
 ) {
+
+  # workspace default
+  workspace<-.ws_default(ws = workspace)
+
   # Check for essential variables
+  .check_basics(token, endpoint, user, password)
+
+
   stopifnot(
-    !is.null(endpoint),
-    !is.null(user),
-    !is.null(password),
     !is.null(questionnaireId),
     !is.null(zoom),
     !is.null(clientMapWidth),
@@ -172,22 +178,11 @@ suso_gql_mapreport <- function(endpoint = NULL,
     body$variables <- variables
   }
 
+  # build the url
+  url<-.baseurl_baseauth(endpoint, body, user, password, retry = 3)
 
+  # perform the request
+  result<-.perform_request(url)
 
-  response <- httr::POST(endpoint, body = body,
-                         encode = "json",
-                         httr::content_type_json(),
-                         httr::user_agent("r api v2"),
-                         httr::accept_json(),
-                         httr::authenticate(user, password, type = "basic"))
-
-  # check the status code
-  if (response$status_code != 200) {
-    stop("Error: ", response$status_code)
-  }
-
-  # parse the JSON response
-  result <- httr::content(response, "text", encoding = "UTF-8")
-  result<-jsonlite::fromJSON(result)
   return(result$data)
 }

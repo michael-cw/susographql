@@ -9,6 +9,7 @@ suso_gql_maps(
   workspace = NULL,
   user = NULL,
   password = NULL,
+  token = NULL,
   fileName = NULL,
   importDateUtc = NULL,
   size = NULL,
@@ -28,6 +29,8 @@ suso_gql_maps(
 \item{user}{your API username}
 
 \item{password}{API password}
+
+\item{token}{If Survey Solutions server token is provided \emph{apiUser} and \emph{apiPass} will be ignored}
 
 \item{fileName}{name of the map on the server}
 
