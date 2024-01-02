@@ -1,7 +1,7 @@
 Package: susographql
 Type: Package
 Title: Survey Solutions GraphQL API package
-Version: 0.1.1
+Version: 0.1.2
 Authors@R: person("Michael", "Wild", , "mwild@worldbank.org", role = c("cre", "aut"))
 Description: This packages implements all the currently available
     calls to the Survey Solutions GraphQL API including the latest one to upload
