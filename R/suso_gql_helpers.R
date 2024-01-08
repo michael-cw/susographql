@@ -97,9 +97,8 @@
     httr2::req_method("POST") |>
     httr2::req_user_agent("r api v2") |>
     httr2::req_auth_basic(user, password) |>
-    httr2::req_retry(
-      max_tries = retry
-    )
+    # when 500 return, retry
+    httr2::req_retry(is_transient = \(resp) httr2::resp_status(resp) %in% c(429, 500, 503), max_tries = 2)
   return(url)
 }
 
