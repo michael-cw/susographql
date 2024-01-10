@@ -176,3 +176,71 @@
 }
 
 
+
+#' request generator with json body
+#'
+#' @keywords internal
+#' @noRd
+#'
+.genrequests_w_multiform<-function(i, endpoint, path_to_zip, ..., method = "POST") {
+  args<-rlang::list2(...)
+  req <- httr2::request(endpoint) |>
+    httr2::req_body_multipart(
+      `operations` = args$mutation,
+      `map` = '{ "0": ["variables.file"] }',
+      `0` = curl::form_file(path_to_zip[i], type = "application/zip")
+    ) |>
+    # !!  IMPORTANT HEADER FOR MAPUPLOAD
+    httr2::req_headers(`GraphQL-Preflight` = 1) |>
+    httr2::req_method(method) |>
+    httr2::req_user_agent("r api v2") |>
+    httr2::req_auth_basic(args$user, args$password)
+  return(req)
+}
+
+#' generate lapply wit cli_progress_along/seq_along, function and arguments
+#'
+#' @keywords internal
+#' @noRd
+#'
+.gen_lapply_with_progress<-function(vec, fun, stage, type ,workspace, ..., call = rlang::caller_env()) {
+  force(vec)
+  # force(fun)
+  if(interactive()){
+    pgtext<-sprintf("Creating %s for all %s in workspace %s.", stage, type, workspace)
+    cli::cli_alert_info("\n {pgtext} \n")
+    requests<-lapply(cli::cli_progress_along(vec, pgtext, total = length(vec), .envir = rlang::current_env()), fun, ...)
+  } else {
+    requests<-lapply(seq_along(vec), fun, ...)
+  }
+  return(requests)
+}
+
+
+#' response generator with json body
+#'
+#' @keywords internal
+#' @noRd
+#'
+.transformresponses<-function(i ,resp, type) {
+  # i. Convert to json
+  respfull <-resp[[i]] |>
+    httr2::resp_body_json(simplifyVector = T)
+  return(respfull$data)
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

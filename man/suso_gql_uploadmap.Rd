@@ -10,22 +10,31 @@ suso_gql_uploadmap(
   user = NULL,
   token = NULL,
   password = NULL,
-  path_to_zip = NULL
+  path_to_zip = NULL,
+  usePar = FALSE,
+  n_par = 10
 )
 }
 \arguments{
-\item{endpoint}{GraphQL endpoint of your server}
+\item{endpoint}{GraphQL endpoint of your server.}
 
-\item{workspace}{Server Workspace, if NULL uses default}
+\item{workspace}{Server Workspace, if NULL uses default.}
 
-\item{user}{your API username}
+\item{user}{your API username.}
 
-\item{token}{If Survey Solutions server token is provided \emph{apiUser} and \emph{apiPass} will be ignored}
+\item{token}{If Survey Solutions server token is provided \emph{apiUser} and \emph{apiPass} will be ignored.}
 
-\item{password}{API password}
+\item{password}{API password.}
 
-\item{path_to_zip}{path to zip file}
+\item{path_to_zip}{path to a single zip file or path to a directory of zip files if \code{usePar=TRUE}.}
+
+\item{usePar}{if TRUE the requests will be performed in parallel EXPERIMENTAL!}
+
+\item{n_par}{number of parallel requests, required if \code{usePar = TRUE} EXPERIMENTAL!}
+}
+\value{
+list with details on successfully processed maps.
 }
 \description{
-Allows the user to retrieve filtered or unfiltered map data.
+Allows the user to upload 1 or several zip files with base maps and shapefiles to the server.
 }
