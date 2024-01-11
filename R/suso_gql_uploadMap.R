@@ -82,9 +82,7 @@ suso_gql_uploadmap <- function(endpoint = NULL,
   } else if(usePar) {
     # PERFORM REQUEST IN PARALLEL?
     # ONLY WORKS WITH DIRECTORY
-    # 1. list all files in dir
-    # 2. divide length into  zip files of 10
-    # 3. create the zip files
+    # 1. list all files in dir wi zip ext
     # 4. loop through all the zip files and create list of request
     # 5. Perform the request in parallel
 
