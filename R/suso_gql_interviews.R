@@ -26,6 +26,9 @@
 #' @param sortby_createdDate sort by creation date, either ASC for ascending or DESC for descending
 #' @param sortby_errorsCount sort by number of errors, either ASC for ascending or DESC for descending
 #' @param sortby_assignmentId sort by assignmentId, either ASC for ascending or DESC for descending
+#' @param sortby_status sort by interview status, either ASC for ascending or DESC for descending
+#' @param sortby_receivedByInterviewerAtUtc sort by date the table received the interview, either ASC for ascending or DESC for descending
+#' @param sortby_responsibleName sort by the current responsible user, either ASC for ascending or DESC for descending
 #' @param take take the specified integer numeber of interviews
 #' @param skip skip the first integer number of interviews
 #'
@@ -57,6 +60,9 @@ suso_gql_interviews <- function(endpoint = NULL,
                                 sortby_createdDate = NULL,
                                 sortby_errorsCount = NULL,
                                 sortby_assignmentId = NULL,
+                                sortby_status = NULL,
+                                sortby_receivedByInterviewerAtUtc = NULL,
+                                sortby_responsibleName = NULL,
                                 take = NULL,
                                 skip = NULL
                                 ) {
@@ -193,9 +199,31 @@ suso_gql_interviews <- function(endpoint = NULL,
     variables$order$assignmentId <- sortby_assignmentId
   }
 
+  if (!is.null(sortby_status)) {
+    stopifnot(
+      sortby_status %in% c("ASC", "DESC")
+    )
+    variables$order$status <- sortby_status
+  }
+
+  if (!is.null(sortby_receivedByInterviewerAtUtc)) {
+    stopifnot(
+      sortby_receivedByInterviewerAtUtc %in% c("ASC", "DESC")
+    )
+    variables$order$receivedByInterviewerAtUtc <- sortby_receivedByInterviewerAtUtc
+  }
+
+  if (!is.null(sortby_responsibleName)) {
+    stopifnot(
+      sortby_responsibleName %in% c("ASC", "DESC")
+    )
+    variables$order$responsibleName <- sortby_responsibleName
+  }
+
+
   ## sorts missing:
 
-  # status: InterviewStatusOperationFilterInput
+  # !!!DONE status: InterviewStatusOperationFilterInput
   # interviewMode: InterviewModeOperationFilterInput
   # questionnaireId: ComparableGuidOperationFilterInput
   # questionnaireVariable: StringOperationFilterInput
@@ -208,8 +236,7 @@ suso_gql_interviews <- function(endpoint = NULL,
   # supervisorName: StringOperationFilterInput
   # supervisorNameLowerCase: StringOperationFilterInput
   # responsibleRole: UserRolesOperationFilterInput
-  # receivedByInterviewerAtUtc: ComparableNullableOfDateTimeOperationFilterInput
-  # identifyingData: ListFilterInputTypeOfIdentifyEntityValueFilterInput
+  # DONE!! receivedByInterviewerAtUtc: ComparableNullableOfDateTimeOperationFilterInput
 
 
 

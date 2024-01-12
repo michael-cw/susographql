@@ -29,6 +29,9 @@ suso_gql_interviews(
   sortby_createdDate = NULL,
   sortby_errorsCount = NULL,
   sortby_assignmentId = NULL,
+  sortby_status = NULL,
+  sortby_receivedByInterviewerAtUtc = NULL,
+  sortby_responsibleName = NULL,
   take = NULL,
   skip = NULL
 )
@@ -81,6 +84,12 @@ suso_gql_interviews(
 \item{sortby_errorsCount}{sort by number of errors, either ASC for ascending or DESC for descending}
 
 \item{sortby_assignmentId}{sort by assignmentId, either ASC for ascending or DESC for descending}
+
+\item{sortby_status}{sort by interview status, either ASC for ascending or DESC for descending}
+
+\item{sortby_receivedByInterviewerAtUtc}{sort by date the table received the interview, either ASC for ascending or DESC for descending}
+
+\item{sortby_responsibleName}{sort by the current responsible user, either ASC for ascending or DESC for descending}
 
 \item{take}{take the specified integer numeber of interviews}
 
