@@ -28,6 +28,7 @@ suso_gql_interviews(
   sortby_notAnsweredCount = NULL,
   sortby_createdDate = NULL,
   sortby_errorsCount = NULL,
+  sortby_assignmentId = NULL,
   take = NULL,
   skip = NULL
 )
@@ -78,6 +79,8 @@ suso_gql_interviews(
 \item{sortby_createdDate}{sort by creation date, either ASC for ascending or DESC for descending}
 
 \item{sortby_errorsCount}{sort by number of errors, either ASC for ascending or DESC for descending}
+
+\item{sortby_assignmentId}{sort by assignmentId, either ASC for ascending or DESC for descending}
 
 \item{take}{take the specified integer numeber of interviews}
 

@@ -25,6 +25,7 @@
 #' @param sortby_notAnsweredCount sort by errors count, either ASC for ascending or DESC for descending
 #' @param sortby_createdDate sort by creation date, either ASC for ascending or DESC for descending
 #' @param sortby_errorsCount sort by number of errors, either ASC for ascending or DESC for descending
+#' @param sortby_assignmentId sort by assignmentId, either ASC for ascending or DESC for descending
 #' @param take take the specified integer numeber of interviews
 #' @param skip skip the first integer number of interviews
 #'
@@ -55,6 +56,7 @@ suso_gql_interviews <- function(endpoint = NULL,
                                 sortby_notAnsweredCount = NULL,
                                 sortby_createdDate = NULL,
                                 sortby_errorsCount = NULL,
+                                sortby_assignmentId = NULL,
                                 take = NULL,
                                 skip = NULL
                                 ) {
@@ -155,7 +157,7 @@ suso_gql_interviews <- function(endpoint = NULL,
     variables$where$status$eq <- status
   }
 
-  # sort
+  ## SORTING
   if (!is.null(sortby_updateDateUtc)) {
     stopifnot(
       sortby_updateDateUtc %in% c("ASC", "DESC")
@@ -184,6 +186,13 @@ suso_gql_interviews <- function(endpoint = NULL,
     variables$order$errorsCount <- sortby_errorsCount
   }
 
+  if (!is.null(sortby_assignmentId)) {
+    stopifnot(
+      sortby_assignmentId %in% c("ASC", "DESC")
+    )
+    variables$order$assignmentId <- sortby_assignmentId
+  }
+
   ## sorts missing:
 
   # status: InterviewStatusOperationFilterInput
@@ -193,7 +202,7 @@ suso_gql_interviews <- function(endpoint = NULL,
   # questionnaireVersion: ComparableInt64OperationFilterInput
   # key: StringOperationFilterInput
   # clientKey: StringOperationFilterInput
-  # assignmentId: ComparableNullableOfInt32OperationFilterInput
+  # DONE!! assignmentId: ComparableNullableOfInt32OperationFilterInput
   # responsibleName: StringOperationFilterInput
   # responsibleNameLowerCase: StringOperationFilterInput
   # supervisorName: StringOperationFilterInput
