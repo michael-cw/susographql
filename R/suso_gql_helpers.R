@@ -229,6 +229,24 @@
   return(respfull$data)
 }
 
+#' helper functions  for default operator
+#'
+#' if not operator is provided, defaults to eq (numeric and character)
+#'
+#' @keywords internal
+#' @noRd
+#'
+.op_default<-function(param) {
+  if(!is.list(param)) {
+    param<-list(eq = param)
+  }
+  return(param)
+}
+
+
+#' @noRd
+#'
+.checkInput<-function(inp) {if(!is.list(inp)) inp<-susoop_num$eq(inp); return(inp)}
 
 
 

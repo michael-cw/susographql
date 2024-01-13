@@ -47,6 +47,28 @@ suso_gql_assignments(
 
 \item{skip}{skip the first integer number of assignments}
 }
+\value{
+if successfull, returns a list with the (filtered) responses
+}
 \description{
 Allows the user to retrieve filtered or unfiltered assignment data.
+}
+\examples{
+\dontshow{if (suso_gql_pwcheck()==200) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+## Requires Survey Solutions Server and API credentials
+
+# Get all assignments without filter
+
+suso_gql_assignments(endpoint = ep, user = usr,
+password = pass, workspace = ws)
+
+# Select assignment with id 25 (note for \code{eq} you do not require the transformer)
+suso_gql_assignments(endpoint = ep, user = usr,
+password = pass, workspace = ws, id = 25)
+
+# Select assignment excluding id 25, by using susoop_numeric
+suso_gql_assignments(endpoint = ep, user = usr,
+password = pass, workspace = ws, id = susoop_num$neq(25))
+
+\dontshow{\}) # examplesIf}
 }

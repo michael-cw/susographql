@@ -32,6 +32,32 @@
 #' @param take take the specified integer numeber of interviews
 #' @param skip skip the first integer number of interviews
 #'
+#'
+#' @return if successfull, returns a list with the (filtered) responses
+#'
+#' @examplesIf suso_gql_pwcheck()==200
+#' ## Requires Survey Solutions Server and API credentials
+#'
+#' # Get all interviews without filter
+#' suso_gql_interviews(endpoint = ep, user = usr,
+#' password = pass, workspace = "primary")
+#'
+#' # Select interviews which are not completed yet
+#' suso_gql_interviews(endpoint = ep, user = usr,
+#' password = pass, workspace = "primary", status = susoop_str$neq("COMPLETED"))
+#'
+#' # Select interviews which have 3 or more errors
+#' suso_gql_assignments(endpoint = ep, user = usr,
+#' password = pass, workspace = "primary", errorsCount = susoop_num$gte(3))
+#'
+#' # Select interviews which have less than 3 errors
+#' suso_gql_assignments(endpoint = ep, user = usr,
+#' password = pass, workspace = "primary", errorsCount = susoop_num$ngt(3))
+#'
+#'
+#'
+#'
+#'
 #' @export
 
 
@@ -128,39 +154,48 @@ suso_gql_interviews <- function(endpoint = NULL,
   variables$where<-NULL
 
   if (!is.null(assignmentId)) {
-    assignmentId<-checkInput(assignmentId)
+    assignmentId<-.checkInput(assignmentId)
     variables$where$assignmentId <- assignmentId
   }
   if (!is.null(clientKey)) {
-    variables$where$clientKey$eq <- clientKey
+    clientKey<-.checkInput(clientKey)
+    variables$where$clientKey <- clientKey
   }
   if (!is.null(questionnaireId) && !is.null(questionnaireVersion)) {
-    variables$where$questionnaireId$eq <- questionnaireId
+    questionnaireId<-.checkInput(questionnaireId)
+    variables$where$questionnaireId <- questionnaireId
 
-    version<-checkInput(version)
+    version<-.checkInput(version)
     variables$where$questionnaireVersion <- questionnaireVersion
   }
   if (!is.null(responsibleName)) {
-    variables$where$responsibleNameLowerCase$eq <- tolower(responsibleName)
+    # uses lower case name in all cases
+    responsibleName <- tolower(responsibleName)
+    responsibleName<-.checkInput(responsibleName)
+    variables$where$responsibleNameLowerCase <- responsibleName
   }
   if (!is.null(supervisorName)) {
-    variables$where$supervisorNameLowerCase$eq <- tolower(supervisorName)
+    supervisorName<-tolower(supervisorName)
+    supervisorName<-.checkInput(supervisorName)
+    variables$where$supervisorNameLowerCase <- supervisorName
   }
   if (!is.null(errorsCount)) {
-    errorsCount<-checkInput(errorsCount)
+    errorsCount<-.checkInput(errorsCount)
     variables$where$errorsCount <- errorsCount
   }
   if (!is.null(interviewMode)) {
-    variables$where$interviewMode$eq <- interviewMode
+    interviewMode<-.checkInput(interviewMode)
+    variables$where$interviewMode <- interviewMode
   }
 
   if (!is.null(notAnsweredCount)) {
-    notAnsweredCount<-checkInput(notAnsweredCount)
+    notAnsweredCount<-.checkInput(notAnsweredCount)
     variables$where$notAnsweredCount <- notAnsweredCount
   }
 
   if (!is.null(status)) {
-    variables$where$status$eq <- status
+    status<-.checkInput(status)
+    variables$where$status <- status
   }
 
   ## SORTING

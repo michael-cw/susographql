@@ -95,6 +95,34 @@ suso_gql_interviews(
 
 \item{skip}{skip the first integer number of interviews}
 }
+\value{
+if successfull, returns a list with the (filtered) responses
+}
 \description{
 Allows the user to retrieve filtered or unfiltered interview data.
+}
+\examples{
+\dontshow{if (suso_gql_pwcheck()==200) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+## Requires Survey Solutions Server and API credentials
+
+# Get all interviews without filter
+suso_gql_interviews(endpoint = ep, user = usr,
+password = pass, workspace = "primary")
+
+# Select interviews which are not completed yet
+suso_gql_interviews(endpoint = ep, user = usr,
+password = pass, workspace = "primary", status = susoop_str$neq("COMPLETED"))
+
+# Select interviews which have 3 or more errors
+suso_gql_assignments(endpoint = ep, user = usr,
+password = pass, workspace = "primary", errorsCount = susoop_num$gte(3))
+
+# Select interviews which have less than 3 errors
+suso_gql_assignments(endpoint = ep, user = usr,
+password = pass, workspace = "primary", errorsCount = susoop_num$ngt(3))
+
+
+
+
+\dontshow{\}) # examplesIf}
 }

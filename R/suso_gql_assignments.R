@@ -16,6 +16,25 @@
 #' @param take take the specified integer numeber of assignments
 #' @param skip skip the first integer number of assignments
 #'
+#' @return if successfull, returns a list with the (filtered) responses
+#'
+#' @examplesIf suso_gql_pwcheck()==200
+#' ## Requires Survey Solutions Server and API credentials
+#'
+#' # Get all assignments without filter
+#'
+#' suso_gql_assignments(endpoint = ep, user = usr,
+#' password = pass, workspace = ws)
+#'
+#' # Select assignment with id 25 (note for \code{eq} you do not require the transformer)
+#' suso_gql_assignments(endpoint = ep, user = usr,
+#' password = pass, workspace = ws, id = 25)
+#'
+#' # Select assignment excluding id 25, by using susoop_numeric
+#' suso_gql_assignments(endpoint = ep, user = usr,
+#' password = pass, workspace = ws, id = susoop_num$neq(25))
+#'
+#'
 #' @export
 
 
@@ -72,20 +91,26 @@ suso_gql_assignments <- function(endpoint = NULL,
   variables$where<-NULL
 
   if (!is.null(archived)) {
-    variables$where$archived$eq <- archived
+    archived<-.checkInput(archived)
+    variables$where$archived <- archived
   }
   if (!is.null(id)) {
-    variables$where$id$eq <- id
+    id<-.checkInput(id)
+    variables$where$id <- id
   }
   if (!is.null(questionnaireId) && !is.null(version)) {
-    variables$where$questionnaireId$id$eq <- questionnaireId
-    variables$where$questionnaireId$version$eq <- version
+    questionnaireId<-.checkInput(questionnaireId)
+    version<-.checkInput(version)
+    variables$where$questionnaireId$id <- questionnaireId
+    variables$where$questionnaireId$version <- version
   }
   if (!is.null(responsibleId)) {
-    variables$where$responsibleId$eq <- responsibleId
+    responsibleId<-.checkInput(responsibleId)
+    variables$where$responsibleId <- responsibleId
   }
   if (!is.null(webMode)) {
-    variables$where$webMode$eq <- webMode
+    webMode<-.checkInput(webMode)
+    variables$where$webMode <- webMode
   }
 
   if (!is.null(take)) {
