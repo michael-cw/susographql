@@ -10,7 +10,7 @@ Description: This packages implements all the currently available
 License: GPL (>= 3)
 Encoding: UTF-8
 LazyData: true
-Imports:
+Imports: 
     curl,
     glue,
     httr2,
@@ -20,7 +20,8 @@ Imports:
     data.table,
     withr,
     cli,
-    rlang
+    rlang,
+    lubridate
 Depends:
     R (>= 3.3.0)
 RoxygenNote: 7.2.3
