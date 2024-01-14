@@ -11,7 +11,8 @@ vignette: >
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
-  echo = TRUE
+  echo = TRUE,
+  eval = Sys.getenv("SUSO_API_PASSWORD")!=""
 )
 
 ep<-Sys.getenv("SUSO_API_EP")
@@ -20,7 +21,7 @@ pass<-Sys.getenv("SUSO_API_PASSWORD")
 ```
 
 
-```{css, echo=FALSE}
+```{css, echo=FALSE, eval = TRUE}
 
 p {
   text-align: justify !important;
