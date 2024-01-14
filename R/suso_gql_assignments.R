@@ -26,7 +26,7 @@
 #' suso_gql_assignments(endpoint = ep, user = usr,
 #' password = pass, workspace = ws)
 #'
-#' # Select assignment with id 25 (note for \code{eq} you do not require the transformer)
+#' # Select assignment with id 25
 #' suso_gql_assignments(endpoint = ep, user = usr,
 #' password = pass, workspace = ws, id = 25)
 #'

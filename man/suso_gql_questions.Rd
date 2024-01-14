@@ -38,6 +38,46 @@ suso_gql_questions(
 
 \item{identifying}{If TRUE only identifying questions are exported}
 }
+\value{
+if successfull, returns a list with the (filtered) responses
+}
 \description{
 Allows the user to retrieve all questions in a questionniare.
+}
+\examples{
+\dontshow{if (suso_gql_pwcheck()==200) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+## Requires Survey Solutions Server and API credentials
+
+questlist<-suso_gql_questionnaires(
+    endpoint = ep, user = usr,
+    password = pass,
+    workspace = "primary")
+
+id<-questlist$questionnaires$nodes$questionnaireId[1]
+v<-questlist$questionnaires$nodes$version[1]
+
+# Get all questions from a questionnaire/version without filter
+
+suso_gql_questions(endpoint = ep, user = usr,
+     password = pass,
+     workspace = ws,
+     id = id,
+     version = v)
+
+# Select only identifying questions
+suso_gql_questions(endpoint = ep, user = usr,
+     password = pass,
+     workspace = ws,
+     id = id,
+     version = v,
+     identifying = TRUE)
+
+# Select only questions which have not interviewer scope
+suso_gql_questions(endpoint = ep, user = usr,
+      password = pass,
+      workspace = ws,
+      id = id,
+      version = v,
+      scope = susoop_str$neq("INTERVIEWER"))
+\dontshow{\}) # examplesIf}
 }

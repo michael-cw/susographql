@@ -86,6 +86,29 @@ suso_gql_mapreport(
 
 \item{supervisorName}{Name of the supervisor of the responsible user}
 }
+\value{
+if successfull, returns a list with the (filtered) responses
+}
 \description{
 Allows the user to retrieve filtered or unfiltered map report data.
+}
+\examples{
+\dontshow{if (suso_gql_pwcheck()==200) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+## Requires Survey Solutions Server and API credentials
+
+questlist<-suso_gql_questionnaires(
+    endpoint = ep, user = usr,
+    password = pass,
+    workspace = "primary")
+
+id<-questlist$questionnaires$nodes$questionnaireId[1]
+ v<-questlist$questionnaires$nodes$version[1]
+
+# Get map report for GPS question start_location
+
+suso_gql_mapreport(endpoint = ep, user = usr,
+password = pass, workspace = ws,
+questionnaireId = id, questionnaireVersion = v, variable = "start_location")
+
+\dontshow{\}) # examplesIf}
 }

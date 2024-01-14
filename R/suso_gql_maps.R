@@ -8,14 +8,30 @@
 #' @param password API password
 #' @param token If Survey Solutions server token is provided \emph{apiUser} and \emph{apiPass} will be ignored
 #' @param fileName name of the map on the server
-#' @param importDateUtc Import date
+#' @param importDateUtc Import date of map
 #' @param size Size of the map
-#' @param users Users to whom the maps are assigned
+#' @param userName User name to whom the map(s) are assigned to.
 #' @param sortby_filename sort maps by file name, either ASC for ascending or DESC for descending
 #' @param sortby_importeddateutc sort maps by import date in utc, either ASC for ascending or DESC for descending
 #' @param sortby_size sort by map size, either ASC for ascending or DESC for descending
 #' @param take take the specified integer numeber of maps
 #' @param skip skip the first integer number of maps
+#'
+#'
+#' @return if successfull, returns a list with the (filtered) responses
+#'
+#' @examplesIf suso_gql_pwcheck()==200
+#' ## Requires Survey Solutions Server and API credentials
+#'
+#' # Get all maps without filter
+#'
+#' suso_gql_maps(endpoint = ep, user = usr,
+#' password = pass, workspace = ws)
+#'
+#' # Get only boundary files (.shp)
+#'
+#' suso_gql_maps(endpoint = ep, user = usr,
+#' password = pass, workspace = ws, fileName = susoop_str$endsWith(".shp"))
 #'
 #' @export
 
@@ -27,7 +43,7 @@ suso_gql_maps <- function(endpoint = NULL,
                           fileName = NULL,
                           importDateUtc = NULL,
                           size = NULL,
-                          users = NULL,
+                          userName = NULL,
                           sortby_filename = NULL,
                           sortby_importeddateutc = NULL,
                           sortby_size = NULL,
@@ -79,10 +95,12 @@ suso_gql_maps <- function(endpoint = NULL,
   variables$where<-NULL
 
   if (!is.null(fileName)) {
-    variables$where$fileName$eq <- fileName
+    fileName<-.checkInput(fileName)
+    variables$where$fileName <- fileName
   }
   if (!is.null(importDateUtc)) {
-    variables$where$importDateUtc$eq <- importDateUtc
+    importDateUtc<-.checkInput(importDateUtc)
+    variables$where$importDateUtc <- importDateUtc
   }
 
   if (!is.null(size)) {
@@ -91,8 +109,9 @@ suso_gql_maps <- function(endpoint = NULL,
   }
 
   ## User must be updated!!
-  if (!is.null(users)) {
-    variables$where$users$all$userName$eq <- users
+  if (!is.null(userName)) {
+    userName<-.checkInput(userName)
+    variables$where$users$all$userName <- userName
   }
 
   ## Sort

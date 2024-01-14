@@ -13,7 +13,7 @@ suso_gql_maps(
   fileName = NULL,
   importDateUtc = NULL,
   size = NULL,
-  users = NULL,
+  userName = NULL,
   sortby_filename = NULL,
   sortby_importeddateutc = NULL,
   sortby_size = NULL,
@@ -34,11 +34,11 @@ suso_gql_maps(
 
 \item{fileName}{name of the map on the server}
 
-\item{importDateUtc}{Import date}
+\item{importDateUtc}{Import date of map}
 
 \item{size}{Size of the map}
 
-\item{users}{Users to whom the maps are assigned}
+\item{userName}{User name to whom the map(s) are assigned to.}
 
 \item{sortby_filename}{sort maps by file name, either ASC for ascending or DESC for descending}
 
@@ -50,6 +50,24 @@ suso_gql_maps(
 
 \item{skip}{skip the first integer number of maps}
 }
+\value{
+if successfull, returns a list with the (filtered) responses
+}
 \description{
 Allows the user to retrieve filtered or unfiltered map data.
+}
+\examples{
+\dontshow{if (suso_gql_pwcheck()==200) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+## Requires Survey Solutions Server and API credentials
+
+# Get all maps without filter
+
+suso_gql_maps(endpoint = ep, user = usr,
+password = pass, workspace = ws)
+
+# Get only boundary files (.shp)
+
+suso_gql_maps(endpoint = ep, user = usr,
+password = pass, workspace = ws, fileName = susoop_str$endsWith(".shp"))
+\dontshow{\}) # examplesIf}
 }

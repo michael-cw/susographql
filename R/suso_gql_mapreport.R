@@ -29,14 +29,27 @@
 #' @param status of the interview
 #' @param supervisorName Name of the supervisor of the responsible user
 #'
+#' @return if successfull, returns a list with the (filtered) responses
+#'
+#' @examplesIf suso_gql_pwcheck()==200
+#' ## Requires Survey Solutions Server and API credentials
+#'
+#' questlist<-suso_gql_questionnaires(
+#'     endpoint = ep, user = usr,
+#'     password = pass,
+#'     workspace = "primary")
+#'
+#' id<-questlist$questionnaires$nodes$questionnaireId[1]
+#'  v<-questlist$questionnaires$nodes$version[1]
+#'
+#' # Get map report for GPS question start_location
+#'
+#' suso_gql_mapreport(endpoint = ep, user = usr,
+#' password = pass, workspace = ws,
+#' questionnaireId = id, questionnaireVersion = v, variable = "start_location")
+#'
+#'
 #' @export
-
-
-
-
-
-
-
 
 
 suso_gql_mapreport <- function(endpoint = NULL,
@@ -122,10 +135,10 @@ suso_gql_mapreport <- function(endpoint = NULL,
   variables$questionnaireId<-questionnaireId
   variables$zoom<-zoom
   variables$clientMapWidth<-clientMapWidth
-  variables$west<-west
-  variables$east<-east
-  variables$north<-north
-  variables$south<-south
+  variables$west<-as.double(west)
+  variables$east<-as.double(east)
+  variables$north<-as.double(north)
+  variables$south<-as.double(south)
 
 
   if (!is.null(questionnaireVersion)) {
@@ -139,37 +152,51 @@ suso_gql_mapreport <- function(endpoint = NULL,
   # 2.1 Filter default is NULL
   variables$where<-NULL
   #
-  if (!is.null(assignmentId)) {
-    variables$where$interviewFilter$assignmentId$eq <- assignmentId
-  }
   if (!is.null(clientKey)) {
-    variables$where$interviewFilter$clientKey$eq <- clientKey
+    clientKey<-.checkInput(clientKey)
+    variables$where$clientKey <- clientKey
   }
+
+  # DOES THIS MAKE SENSE HERE, SINCE QUESTIONNAIRE IS ALREADY PARAMETER
   # if (!is.null(questionnaireId) && !is.null(questionnaireVersion)) {
-  #   variables$where$questionnaireId$id$eq <- questionnaireId
-  #   variables$where$questionnaireId$version$eq <- version
+  #   questionnaireId<-.checkInput(questionnaireId)
+  #   variables$where$questionnaireId <- questionnaireId
+  #
+  #   version<-.checkInput(version)
+  #   variables$where$questionnaireVersion <- questionnaireVersion
   # }
 
+
   if (!is.null(responsibleName)) {
-    variables$where$interviewFilter$responsibleNameLowerCase$eq <- tolower(responsibleName)
+    # uses lower case name in all cases
+    responsibleName <- tolower(responsibleName)
+    responsibleName<-.checkInput(responsibleName)
+    variables$where$responsibleNameLowerCase <- responsibleName
   }
   if (!is.null(supervisorName)) {
-    variables$where$interviewFilter$supervisorNameLowerCase$eq <- tolower(supervisorName)
+    supervisorName<-tolower(supervisorName)
+    supervisorName<-.checkInput(supervisorName)
+    variables$where$supervisorNameLowerCase <- supervisorName
   }
   if (!is.null(errorsCount)) {
-    variables$where$interviewFilter$errorsCount$eq <- errorsCount
+    errorsCount<-.checkInput(errorsCount)
+    variables$where$errorsCount <- errorsCount
   }
   if (!is.null(interviewMode)) {
-    variables$where$interviewFilter$interviewMode$eq <- interviewMode
+    interviewMode<-.checkInput(interviewMode)
+    variables$where$interviewMode <- interviewMode
   }
 
   if (!is.null(notAnsweredCount)) {
-    variables$where$interviewFilter$notAnsweredCount$neq <- notAnsweredCount
+    notAnsweredCount<-.checkInput(notAnsweredCount)
+    variables$where$notAnsweredCount <- notAnsweredCount
   }
 
   if (!is.null(status)) {
-    variables$where$status$eq <- status
+    status<-.checkInput(status)
+    variables$where$status <- status
   }
+
 
 
   # create the body of the request

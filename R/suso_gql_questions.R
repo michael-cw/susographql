@@ -13,12 +13,44 @@
 #' @param scope Get questions for a specific scope
 #' @param identifying If TRUE only identifying questions are exported
 #'
+#' @return if successfull, returns a list with the (filtered) responses
+#'
+#' @examplesIf suso_gql_pwcheck()==200
+#' ## Requires Survey Solutions Server and API credentials
+#'
+#' questlist<-suso_gql_questionnaires(
+#'     endpoint = ep, user = usr,
+#'     password = pass,
+#'     workspace = "primary")
+#'
+#' id<-questlist$questionnaires$nodes$questionnaireId[1]
+#' v<-questlist$questionnaires$nodes$version[1]
+#'
+#' # Get all questions from a questionnaire/version without filter
+#'
+#' suso_gql_questions(endpoint = ep, user = usr,
+#'      password = pass,
+#'      workspace = ws,
+#'      id = id,
+#'      version = v)
+#'
+#' # Select only identifying questions
+#' suso_gql_questions(endpoint = ep, user = usr,
+#'      password = pass,
+#'      workspace = ws,
+#'      id = id,
+#'      version = v,
+#'      identifying = TRUE)
+#'
+#' # Select only questions which have not interviewer scope
+#' suso_gql_questions(endpoint = ep, user = usr,
+#'       password = pass,
+#'       workspace = ws,
+#'       id = id,
+#'       version = v,
+#'       scope = susoop_str$neq("INTERVIEWER"))
+#'
 #' @export
-
-
-
-
-
 
 suso_gql_questions <- function(endpoint = NULL,
                                workspace = NULL,
@@ -77,13 +109,16 @@ suso_gql_questions <- function(endpoint = NULL,
   variables$where<-NULL
 
   if (!is.null(variable)) {
-    variables$where$variable$eq <- variable
+    variable<-.checkInput(variable)
+    variables$where$variable <- variable
   }
   if (!is.null(scope)) {
-    variables$where$scope$eq <- scope
+    scope<-.checkInput(scope)
+    variables$where$scope <- scope
   }
   if (!is.null(identifying)) {
-    variables$where$identifying$eq <- identifying
+    identifying<-.checkInput(identifying)
+    variables$where$identifying <- identifying
   }
 
   # create the body of the request
