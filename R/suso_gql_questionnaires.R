@@ -1,6 +1,6 @@
 #' Get all Questionnaires
 #'
-#' Allows the user to retrieve filtered or unfiltered map data.
+#'  Get all Questionnaires in the workspace or only a selected one/versions.
 #'
 #' @param endpoint GraphQL endpoint of your server
 #' @param workspace Server Workspace, if NULL uses default
@@ -11,6 +11,16 @@
 #' @param version Questionnaire version
 #' @param take take the specified integer numeber of questionnaires
 #' @param skip skip the first integer number of questionnaires
+#'
+#' @return if successfull, returns a list with the responses
+#'
+#' @examplesIf suso_gql_pwcheck()==200
+#' ## Requires Survey Solutions Server and API credentials
+#'
+#' # Get all questionnaires in workspace ws
+#'
+#' suso_gql_questionnaires(endpoint = ep, user = usr,
+#' password = pass, workspace = ws)
 #'
 #' @export
 

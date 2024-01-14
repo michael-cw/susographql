@@ -29,6 +29,21 @@ suso_gql_deleteuserfrommap(
 
 \item{userName}{the name of the interviewer to whom the map will be assigned to}
 }
+\value{
+if successfull, returns a list with the executed mutation
+}
 \description{
 Allows the user to delete an interviewer from a map to be used in CAPI data collection.
+}
+\examples{
+\dontshow{if (suso_gql_pwcheck()==200) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+## Requires Survey Solutions Server and API credentials
+
+# Delete map seg_168_ALL.tif from user int0073
+
+suso_gql_deleteuserfrommap(endpoint = ep, user = usr,
+password = pass, workspace = ws,
+fileName = "seg_168_ALL.tif", userName = "int0073")
+
+\dontshow{\}) # examplesIf}
 }

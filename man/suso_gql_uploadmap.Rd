@@ -33,8 +33,32 @@ suso_gql_uploadmap(
 \item{n_par}{number of parallel requests, required if \code{usePar = TRUE} EXPERIMENTAL!}
 }
 \value{
-list with details on successfully processed maps.
+a list with details on successfully processed maps, if \code{usePar = TRUE}, the node
+element of that list will be a data.table with all the successfully processed uploads.
 }
 \description{
 Allows the user to upload 1 or several zip files with base maps and shapefiles to the server.
+}
+\details{
+If \code{usePar = TRUE} a path to a directory needs to be provided containing the zipped
+map files. This feature may be useful when uploading a large number of maps, however be careful,
+with the number of parallel requests and the size of each zip file, as this may overload the server.
+Initial testing and gradually increasing the \code{n_par} parameter is therefore strongly recommended.
+}
+\examples{
+\dontshow{if (suso_gql_pwcheck()==200) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+## Requires Survey Solutions Server and API credentials
+
+# Upload a single zip file containing maps
+
+suso_gql_uploadmap(endpoint = ep, user = usr,
+password = pass, workspace = ws,
+path_to_zip = "./dev/shapes_for_test.zip", usePar = FALSE)
+
+# Upload a directory with zip files containing maps
+
+suso_gql_uploadmap(endpoint = ep, user = usr,
+password = pass, workspace = ws,
+path_to_zip = "./dev/allzipforupload/", usePar = TRUE)
+\dontshow{\}) # examplesIf}
 }

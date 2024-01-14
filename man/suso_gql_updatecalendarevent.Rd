@@ -35,6 +35,22 @@ suso_gql_updatecalendarevent(
 
 \item{startTimezone}{time zone of the tablet device, use \code{\link[base]{OlsonNames}}.}
 }
+\value{
+if successfull, returns a list with the executed mutation
+}
 \description{
 Update a calendar event
+}
+\examples{
+\dontshow{if (suso_gql_pwcheck()==200) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+## Requires Survey Solutions Server and API credentials
+
+# Update a calendar event for a specific event to 2024-01-18 01:41:14,
+# in timezone Chile/Continental
+
+suso_gql_updatecalendarevent(endpoint = ep, user = usr,
+password = pass, workspace = ws, publicKey = "ea8b49c0-0d16-4fec-9029-72278e94a233",
+newStart = "2024-01-16 01:41:14",
+startTimezone = "Chile/Continental", comment = "Lets Go Again!")
+\dontshow{\}) # examplesIf}
 }

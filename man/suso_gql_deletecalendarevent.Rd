@@ -26,6 +26,21 @@ suso_gql_deletecalendarevent(
 
 \item{publicKey}{the publicKey of the calendar event to be deleted.}
 }
+\value{
+if successfull, returns a list with the executed mutation
+}
 \description{
 Delete a calendar event
+}
+\examples{
+\dontshow{if (suso_gql_pwcheck()==200) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+## Requires Survey Solutions Server and API credentials
+
+# Delete a calendar event for a specific event
+# in timezone Chile/Continental
+
+suso_gql_deletecalendarevent(endpoint = ep, user = usr,
+password = pass, workspace = ws,
+publicKey = "ea8b49c0-0d16-4fec-9029-72278e94a233")
+\dontshow{\}) # examplesIf}
 }

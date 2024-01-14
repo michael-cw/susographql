@@ -12,9 +12,19 @@
 #' @param newStart new start date, format must be: \code{2024-01-16 01:41:14}
 #' @param startTimezone time zone of the tablet device, use \code{\link[base]{OlsonNames}}
 #'
+#' @return if successfull, returns a list with the executed mutation
+#'
+#' @examplesIf suso_gql_pwcheck()==200
+#' ## Requires Survey Solutions Server and API credentials
+#'
+#' # Create a calendar event for assignment 208 on 2024-01-16 01:41:14,
+#' # in timezone Chile/Continental
+#'
+#' suso_gql_addassignmentcalendarevent(endpoint = ep, user = usr,
+#' password = pass, workspace = ws, assignmentId = 208, newStart = "2024-01-16 01:41:14",
+#' startTimezone = "Chile/Continental", comment = "Lets Go!")
 #'
 #' @export
-
 
 
 
@@ -123,6 +133,19 @@ suso_gql_addassignmentcalendarevent <- function(endpoint = NULL,
 #' @param comment a comment string
 #' @param newStart new start date, format must be: \code{2024-01-16 01:41:14}
 #' @param startTimezone time zone of the tablet device, use \code{\link[base]{OlsonNames}}
+#'
+#' @return if successfull, returns a list with the executed mutation
+#'
+#' @examplesIf suso_gql_pwcheck()==200
+#' ## Requires Survey Solutions Server and API credentials
+#'
+#' # Create a calendar event for a selected interview on 2024-01-16 01:41:14,
+#' # in timezone UTC
+#'
+#' suso_gql_addinterviewcalendarevent(endpoint = ep, user = usr,
+#' password = pass, workspace = ws, interviewId = "bac4d15253b541dd86a003dc7f854e35",
+#' newStart = "2024-01-16 01:41:14",
+#' startTimezone = "UTC", comment = "Lets Go!")
 #'
 #' @export
 

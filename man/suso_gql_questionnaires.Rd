@@ -35,6 +35,19 @@ suso_gql_questionnaires(
 
 \item{skip}{skip the first integer number of questionnaires}
 }
+\value{
+if successfull, returns a list with the responses
+}
 \description{
-Allows the user to retrieve filtered or unfiltered map data.
+Get all Questionnaires in the workspace or only a selected one/versions.
+}
+\examples{
+\dontshow{if (suso_gql_pwcheck()==200) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+## Requires Survey Solutions Server and API credentials
+
+# Get all questionnaires in workspace ws
+
+suso_gql_questionnaires(endpoint = ep, user = usr,
+password = pass, workspace = ws)
+\dontshow{\}) # examplesIf}
 }

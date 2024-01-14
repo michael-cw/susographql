@@ -12,6 +12,19 @@
 #' @param newStart new start date, format must be: \code{2024-01-16 01:41:14}.
 #' @param startTimezone time zone of the tablet device, use \code{\link[base]{OlsonNames}}.
 #'
+#' @return if successfull, returns a list with the executed mutation
+#'
+#' @examplesIf suso_gql_pwcheck()==200
+#' ## Requires Survey Solutions Server and API credentials
+#'
+#' # Update a calendar event for a specific event to 2024-01-18 01:41:14,
+#' # in timezone Chile/Continental
+#'
+#' suso_gql_updatecalendarevent(endpoint = ep, user = usr,
+#' password = pass, workspace = ws, publicKey = "ea8b49c0-0d16-4fec-9029-72278e94a233",
+#' newStart = "2024-01-16 01:41:14",
+#' startTimezone = "Chile/Continental", comment = "Lets Go Again!")
+#'
 #' @export
 
 
@@ -117,6 +130,18 @@ suso_gql_updatecalendarevent <- function(endpoint = NULL,
 #' @param password your API user password.
 #' @param token If Survey Solutions server token is provided \emph{apiUser} and \emph{apiPass} will be ignored.
 #' @param publicKey the publicKey of the calendar event to be deleted.
+#'
+#' @return if successfull, returns a list with the executed mutation
+#'
+#' @examplesIf suso_gql_pwcheck()==200
+#' ## Requires Survey Solutions Server and API credentials
+#'
+#' # Delete a calendar event for a specific event
+#' # in timezone Chile/Continental
+#'
+#' suso_gql_deletecalendarevent(endpoint = ep, user = usr,
+#' password = pass, workspace = ws,
+#' publicKey = "ea8b49c0-0d16-4fec-9029-72278e94a233")
 #'
 #' @export
 

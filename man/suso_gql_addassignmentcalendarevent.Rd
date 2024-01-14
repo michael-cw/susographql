@@ -35,6 +35,21 @@ suso_gql_addassignmentcalendarevent(
 
 \item{startTimezone}{time zone of the tablet device, use \code{\link[base]{OlsonNames}}}
 }
+\value{
+if successfull, returns a list with the executed mutation
+}
 \description{
 Add a calendar event to an assignment
+}
+\examples{
+\dontshow{if (suso_gql_pwcheck()==200) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+## Requires Survey Solutions Server and API credentials
+
+# Create a calendar event for assignment 208 on 2024-01-16 01:41:14,
+# in timezone Chile/Continental
+
+suso_gql_addassignmentcalendarevent(endpoint = ep, user = usr,
+password = pass, workspace = ws, assignmentId = 208, newStart = "2024-01-16 01:41:14",
+startTimezone = "Chile/Continental", comment = "Lets Go!")
+\dontshow{\}) # examplesIf}
 }

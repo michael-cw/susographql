@@ -26,6 +26,21 @@ suso_gql_deletemap(
 
 \item{fileName}{the name of the map file on the server}
 }
+\value{
+if successfull, returns a list with the executed mutation
+}
 \description{
 Allows the user to delete a map.
+}
+\examples{
+\dontshow{if (suso_gql_pwcheck()==200) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+## Requires Survey Solutions Server and API credentials
+
+# Delete map seg_168_ALL.tif
+
+suso_gql_deletemap(endpoint = ep, user = usr,
+password = pass, workspace = ws,
+fileName = "seg_168_ALL.tif")
+
+\dontshow{\}) # examplesIf}
 }

@@ -10,6 +10,18 @@
 #' @param fileName the name of the map file on the server
 #' @param userName the name of the interviewer to whom the map will be assigned to
 #'
+#' @return if successfull, returns a list with the executed mutation
+#'
+#' @examplesIf suso_gql_pwcheck()==200
+#' ## Requires Survey Solutions Server and API credentials
+#'
+#' # Assign map seg_168_ALL.tif to user int0073
+#'
+#' suso_gql_addusertomap(endpoint = ep, user = usr,
+#' password = pass, workspace = ws,
+#' fileName = "seg_168_ALL.tif", userName = "int0073")
+#'
+#'
 #' @export
 
 

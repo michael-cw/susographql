@@ -9,6 +9,18 @@
 #' @param token If Survey Solutions server token is provided \emph{apiUser} and \emph{apiPass} will be ignored
 #' @param fileName the name of the map file on the server
 #'
+#' @return if successfull, returns a list with the executed mutation
+#'
+#' @examplesIf suso_gql_pwcheck()==200
+#' ## Requires Survey Solutions Server and API credentials
+#'
+#' # Delete map seg_168_ALL.tif
+#'
+#' suso_gql_deletemap(endpoint = ep, user = usr,
+#' password = pass, workspace = ws,
+#' fileName = "seg_168_ALL.tif")
+#'
+#'
 #' @export
 
 

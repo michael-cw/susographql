@@ -35,6 +35,22 @@ suso_gql_addinterviewcalendarevent(
 
 \item{startTimezone}{time zone of the tablet device, use \code{\link[base]{OlsonNames}}}
 }
+\value{
+if successfull, returns a list with the executed mutation
+}
 \description{
 Add a calendar event to an Interview
+}
+\examples{
+\dontshow{if (suso_gql_pwcheck()==200) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+## Requires Survey Solutions Server and API credentials
+
+# Create a calendar event for a selected interview on 2024-01-16 01:41:14,
+# in timezone UTC
+
+suso_gql_addinterviewcalendarevent(endpoint = ep, user = usr,
+password = pass, workspace = ws, interviewId = "bac4d15253b541dd86a003dc7f854e35",
+newStart = "2024-01-16 01:41:14",
+startTimezone = "UTC", comment = "Lets Go!")
+\dontshow{\}) # examplesIf}
 }

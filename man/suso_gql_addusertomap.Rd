@@ -29,6 +29,21 @@ suso_gql_addusertomap(
 
 \item{userName}{the name of the interviewer to whom the map will be assigned to}
 }
+\value{
+if successfull, returns a list with the executed mutation
+}
 \description{
 Allows the user to assign a map to an interviewer to be used in CAPI data collection.
+}
+\examples{
+\dontshow{if (suso_gql_pwcheck()==200) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+## Requires Survey Solutions Server and API credentials
+
+# Assign map seg_168_ALL.tif to user int0073
+
+suso_gql_addusertomap(endpoint = ep, user = usr,
+password = pass, workspace = ws,
+fileName = "seg_168_ALL.tif", userName = "int0073")
+
+\dontshow{\}) # examplesIf}
 }

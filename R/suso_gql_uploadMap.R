@@ -11,8 +11,29 @@
 #' @param usePar if TRUE the requests will be performed in parallel EXPERIMENTAL!
 #' @param n_par number of parallel requests, required if \code{usePar = TRUE} EXPERIMENTAL!
 #'
+#' @details If \code{usePar = TRUE} a path to a directory needs to be provided containing the zipped
+#' map files. This feature may be useful when uploading a large number of maps, however be careful,
+#' with the number of parallel requests and the size of each zip file, as this may overload the server.
+#' Initial testing and gradually increasing the \code{n_par} parameter is therefore strongly recommended.
 #'
-#' @return list with details on successfully processed maps.
+#'
+#' @return a list with details on successfully processed maps, if \code{usePar = TRUE}, the node
+#' element of that list will be a data.table with all the successfully processed uploads.
+#'
+#' @examplesIf suso_gql_pwcheck()==200
+#' ## Requires Survey Solutions Server and API credentials
+#'
+#' # Upload a single zip file containing maps
+#'
+#' suso_gql_uploadmap(endpoint = ep, user = usr,
+#' password = pass, workspace = ws,
+#' path_to_zip = "./dev/shapes_for_test.zip", usePar = FALSE)
+#'
+#' # Upload a directory with zip files containing maps
+#'
+#' suso_gql_uploadmap(endpoint = ep, user = usr,
+#' password = pass, workspace = ws,
+#' path_to_zip = "./dev/allzipforupload/", usePar = TRUE)
 #'
 #' @export
 
@@ -99,7 +120,7 @@ suso_gql_uploadmap <- function(endpoint = NULL,
           endpoint, ziplist, user = user, password = password, mutation = mutation
         )
         # execute requests in parallel
-        if(!is.numeric(n_par)) cli::cli_abort(c("x" = "Number of parllel requests must be numeric!"))
+        if(!is.numeric(n_par)) cli::cli_abort(c("x" = "Number of parallel requests must be numeric!"))
         responses <- httr2::req_perform_parallel(
           requests,
           pool = curl::new_pool(host_con = n_par, total_con = n_par),
