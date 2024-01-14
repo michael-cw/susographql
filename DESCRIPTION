@@ -1,12 +1,18 @@
 Package: susographql
 Type: Package
-Title: Survey Solutions GraphQL API package
+Title: Comprehensive Interface to the Survey Solutions GraphQL API
 Version: 0.1.2
 Authors@R: person("Michael", "Wild", , "mwild@worldbank.org", role = c("cre", "aut"))
-Description: This packages implements all the currently available
-    calls to the Survey Solutions GraphQL API including the latest one to upload
-    maps. Its build purely on the httr package and does not use any other of the 
-    available graphql client packages.
+Description: Provides a complete suite of tools for interacting
+    with the Survey Solutions GraphQL API.  This package encompasses all
+    currently available queries and mutations, including the latest
+    features for map uploads. It is built on the modern httr2 package,
+    offering a streamlined and efficient interface without relying on
+    external GraphQL client packages. In addition to core API
+    functionalities, the package includes a range of helper functions
+    designed to facilitate the use of available query filters, enhancing
+    the user experience and expanding the capabilities for data
+    manipulation and retrieval.
 License: GPL (>= 3)
 Encoding: UTF-8
 LazyData: true
