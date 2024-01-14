@@ -45,6 +45,8 @@ cover both, the [Survey Solutions REST
 API](https://demo.mysurvey.solutions/apidocs/index.html#) and the
 GraphQL API handled in this package.
 
+</p>
+
 ## Installation
 
   - Install R: <https://cran.r-project.org/mirrors.html> (version 4.1.1
@@ -69,5 +71,51 @@ install.packages("devtools")
 ``` r
 devtools::install_github("michael-cw/susographql")
 ```
+
+## Using the API client
+
+1.  Set up your own personal [Survey Solutions
+    Server](https://mysurvey.solutions/en/) or request a free [Personal
+    Demo Server
+    (PDS)](https://pds.mysurvey.solutions/PersonalDemoServerRequest)
+    (for testing only\!\!).
+2.  Set up your [API user and
+    credentials](https://docs.mysurvey.solutions/headquarters/accounts/teams-and-roles-tab-creating-user-accounts/).
+3.  Use the credentials to connect to the server.
+
+Contrary to its bigger sisters, the [SurveySolutionsAPI (httr
+version)](https://github.com/michael-cw/SurveySolutionsAPI) and the
+[SurveySolutionsAPIv2 (httr2
+version)](https://github.com/michael-cw/SurveySolutionsAPIv2) this
+package does not come with a lot of helpers for credential handling and
+setting, nevertheless a light-weight credentials check is included:
+
+``` r
+library(susographql)
+
+suso_gql_pwcheck(
+  endpoint = "https://demo.mysurvey.solutions/graphql",
+  user = "someuser",
+  password = "andhispassword",
+  workspace = "primary"
+)
+```
+
+Which returns either **200** if the credentials are correct and **400**
+otherwise. Also note, that the endpoint requires the full path including
+the **graphql** part at the end.
+
+## Feature requests and bug reports
+
+You can either use the standard GitHub approach by filing a bug
+report/feature request
+[here](https://github.com/michael-cw/SurveySolutionsAPI/issues) or you
+use the Survey Solutions user forum
+[here](https://forum.mysurvey.solutions/c/api/13).
+
+Please continue to check for updates, as we are constantly working to
+improve the package as well as integrating any new GraphQL queries or
+mutations as soon as they are available in [Survey
+Solutions](https://docs.mysurvey.solutions/release-notes/).
 
 </div>
