@@ -1,0 +1,180 @@
+---
+title: "Using skip and take in a loop"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Using skip and take in a loop}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  echo = TRUE
+)
+
+ep<-Sys.getenv("SUSO_API_EP")
+usr<-Sys.getenv("SUSO_API_USER")
+pass<-Sys.getenv("SUSO_API_PASSWORD")
+```
+
+
+```{css, echo=FALSE}
+
+p {
+  text-align: justify !important;
+}
+
+```
+
+
+## Quick credentials check
+
+```{r pwcheck}
+library(susographql)
+
+suso_gql_pwcheck(
+  endpoint = ep,
+  user = usr,
+  password = pass,
+  workspace = "primary"
+)
+
+```
+
+
+## Assignment list 1 (simple)
+
+Exporting a list of assignments usually contains more than 100 rows, and a single API call would not allow us to get a complete list, as the limit (parameter take) is 100. To still get all the assignments, we need to make use of the skip parameter. In the example bellow we will apply the following strategy:
+
+1. We do a single API call, and get the first 100 assignments, plus the parameters totalCount/filteredCount.
+2. We then get the total number and calculate the remaining number of assignments on the server
+3. We create a loop, and increase the number to skip always by 100
+
+One problem in the example bellow is the column calendarEvent which is a nested data.frame column. For the simple solution, we just delete it. 
+
+```{r loopsimple}
+
+asslist<-suso_gql_assignments(
+  endpoint = ep,
+  user = usr, password = pass, workspace = "primary",
+  take = 100
+)
+
+# tot count (safer to always use filtered count)
+tot<-asslist$assignments$filteredCount
+# max lengt is 100
+rest<-tot - nrow(asslist$assignments$nodes)
+# number of loops
+n_loops<-ceiling(rest/100)
+# skip/take augment
+ass_loop<-function(i) {
+  asslist<-suso_gql_assignments(
+    endpoint = ep,
+    user = usr, password = pass, workspace = "primary",
+    skip = 100*i, take = 100
+  )
+  # remove calenderevent otherwise rbind gets difficult
+  dout<-asslist$assignments$nodes
+  dout$calendarEvent<-NULL
+  return(dout)
+
+}
+# lapply for the loop
+asslist_rest<-lapply(1:n_loops, ass_loop)
+# bind the last two lists
+asslist_rest <- do.call(rbind, c(asslist_rest, make.row.names = FALSE))
+
+# bind the first df and the result of the rest into 1 (remove cal event first)
+asslist<-asslist$assignments$nodes
+asslist$calendarEvent<-NULL
+asslist<-rbind(asslist, asslist_rest)
+
+# Compare the final number of rows with the total
+tot==nrow(asslist)
+
+# Column names
+names(asslist)
+
+```
+
+As you can see, the total count (when using a filter, use filteredCount) extracted at the beginning is the same as the number of rows of the final data.frame.
+
+## Assignment list 2 (not so simple)
+
+Same as above, however now we keep the nested data.frame column.
+
+```{r loopcomplex}
+
+# 1. get first list (limit is automatic 100 but we use the parameter here for demonstration)
+asslist<-suso_gql_assignments(
+  endpoint = "https://michael-wild-demo.mysurvey.solutions/graphql",
+  user = "apiUser", password = "Nitro12345", workspace = "primary",
+  take = 100
+)
+
+# tot count (safer to always use filtered count)
+tot<-asslist$assignments$filteredCount
+# max lengt is 100
+rest<-tot - nrow(asslist$assignments$nodes)
+# number of loops
+n_loops<-ceiling(rest/100)
+# skip/take augment
+ass_loop<-function(i) {
+  asslist<-suso_gql_assignments(
+    endpoint = "https://michael-wild-demo.mysurvey.solutions/graphql",
+    user = "apiUser", password = "Nitro12345", workspace = "primary",
+    skip = 100*i, take = 100
+  )
+  # remove calenderevent otherwise rbind gets difficult
+  dout<-asslist$assignments$nodes
+  #dout$calendarEvent<-NULL
+  return(dout)
+
+}
+
+# lapply for the loop
+asslist_rest<-lapply(1:n_loops, ass_loop)
+
+# Function for rbind with nested data.frames
+row_bind_list <- function(df_list) {
+  # Check if all data frames in the list have the same structure
+  if (!all(sapply(df_list, function(x) all(names(x) == names(df_list[[1]]))))) {
+    stop("All data frames in the list must have the same columns.")
+  }
+
+  # Bind regular columns and nested data.frame columns separately
+  regular_cols <- which(!sapply(df_list[[1]], is.data.frame))
+  nested_cols <- which(sapply(df_list[[1]], is.data.frame))
+
+  # Bind regular columns
+  regular_df <- do.call(rbind, lapply(df_list, function(df) df[, regular_cols, drop = FALSE]))
+
+  # Bind nested data.frame columns
+  nested_dfs <- lapply(nested_cols, function(ncol) {
+    do.call(rbind, lapply(df_list, function(df) df[[ncol]]))
+  })
+
+  # Combine regular and nested columns into one data frame
+  bound_df <- cbind(regular_df, setNames(nested_dfs, names(df_list[[1]])[nested_cols]))
+
+  return(bound_df)
+}
+
+# Add the first 100 & bind the data.frames
+asslist_rest[[(n_loops+1)]]<-asslist$assignments$nodes
+asslist<-row_bind_list(asslist_rest)
+
+# Compare the final number of rows with the total
+tot==nrow(asslist)
+
+# Column names
+names(asslist)
+
+
+```
+
+Again same result as above, however the calendarEvent nested data.frame columns are now included. Though if you are not using calendar events in your survey, then this column would not be relevant for you, and the first solutions is sufficient.
+
+
