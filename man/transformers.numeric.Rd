@@ -56,7 +56,9 @@ a named list.
 }
 \section{Functions}{
 \itemize{
-\item \code{neq()}: smaller
+\item \code{eq()}: equal
+
+\item \code{neq()}: not equal
 
 \item \code{inbetw()}: inbetween (requires numeric vector with upper and lower bound, i.e. c(1, 5))
 

@@ -20,13 +20,15 @@
 #'
 #' @return a list with a single named element (operator name) to be handed over to the filter.
 #'
-#'
-#' @export
+NULL
 
+
+#' @describeIn transformers.numeric equal
+#' @export
 
 eq<-function(value_set) {list(eq = value_set)}
 
-#' @describeIn transformers.numeric smaller
+#' @describeIn transformers.numeric not equal
 #' @export
 
 neq<-function(value_set) {list(neq = value_set)}

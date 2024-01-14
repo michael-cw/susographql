@@ -44,19 +44,21 @@ a named list.
 }
 \section{Functions}{
 \itemize{
-\item \code{endsWith()}: smaller
+\item \code{contains()}: contains
 
-\item \code{ncontains()}: inbetween (requires numeric vector with upper and lower bound, i.e. c(1, 5))
+\item \code{endsWith()}: ends with
 
-\item \code{nendsWith()}: not inbetween (requires numeric vector with upper and lower bound, i.e. c(1,5))
+\item \code{ncontains()}: not contains
 
-\item \code{nstartsWith()}: not inbetween (requires numeric vector with upper and lower bound, i.e. c(1,5))
+\item \code{nendsWith()}: not ends with
 
-\item \code{startsWith()}: not inbetween (requires numeric vector with upper and lower bound, i.e. c(1,5))
+\item \code{nstartsWith()}: not starts with
 
-\item \code{inclu()}: not inbetween (requires numeric vector with upper and lower bound, i.e. c(1,5))
+\item \code{startsWith()}: starts with
 
-\item \code{ninclu()}: not inbetween (requires numeric vector with upper and lower bound, i.e. c(1,5))
+\item \code{inclu()}: in
+
+\item \code{ninclu()}: not in
 
 }}
 \examples{

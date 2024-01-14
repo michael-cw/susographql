@@ -20,41 +20,46 @@
 #'
 #' @return a list with a single named element (operator name) to be handed over to the filter.
 #'
+NULL
+
+
+#' @describeIn transformers.string contains
 #' @export
+
 contains<-function(value_set) {list(contains = value_set)}
 
-#' @describeIn transformers.string smaller
+#' @describeIn transformers.string ends with
 #' @export
 
 endsWith<-function(value_set) {list(endsWith = value_set)}
 
-#' @describeIn transformers.string inbetween (requires numeric vector with upper and lower bound, i.e. c(1, 5))
+#' @describeIn transformers.string not contains
 #' @export
 
 ncontains<-function(value_set) {list(ncontains = value_set)}
 
 
-#' @describeIn transformers.string not inbetween (requires numeric vector with upper and lower bound, i.e. c(1,5))
+#' @describeIn transformers.string not ends with
 #' @export
 #'
 nendsWith<-function(value_set) {list(nendsWith = value_set)}
 
-#' @describeIn transformers.string not inbetween (requires numeric vector with upper and lower bound, i.e. c(1,5))
+#' @describeIn transformers.string not starts with
 #' @export
 #'
 nstartsWith<-function(value_set) {list(nstartsWith = value_set)}
 
-#' @describeIn transformers.string not inbetween (requires numeric vector with upper and lower bound, i.e. c(1,5))
+#' @describeIn transformers.string starts with
 #' @export
 #'
 startsWith<-function(value_set) {list(startsWith = value_set)}
 
-#' @describeIn transformers.string not inbetween (requires numeric vector with upper and lower bound, i.e. c(1,5))
+#' @describeIn transformers.string in
 #' @export
 #'
 inclu<-function(value_set) {list(`in` = value_set)}
 
-#' @describeIn transformers.string not inbetween (requires numeric vector with upper and lower bound, i.e. c(1,5))
+#' @describeIn transformers.string not in
 #' @export
 #'
 ninclu<-function(value_set) {list(nin = value_set)}
