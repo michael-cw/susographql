@@ -12,7 +12,7 @@
 #'
 #' @examples
 #'
-#' # set filter equal to 0
+#' # set filter so that the string contains "area"
 #' contains("area")
 #'
 #' # set filter to string ending with .shp
