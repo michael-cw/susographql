@@ -19,10 +19,19 @@
     <loc>https://michael-cw.github.io/susographql/reference/index.html</loc>
   </url>
   <url>
+    <loc>https://michael-cw.github.io/susographql/reference/suso_gql_addassignmentcalendarevent.html</loc>
+  </url>
+  <url>
+    <loc>https://michael-cw.github.io/susographql/reference/suso_gql_addinterviewcalendarevent.html</loc>
+  </url>
+  <url>
     <loc>https://michael-cw.github.io/susographql/reference/suso_gql_addusertomap.html</loc>
   </url>
   <url>
     <loc>https://michael-cw.github.io/susographql/reference/suso_gql_assignments.html</loc>
+  </url>
+  <url>
+    <loc>https://michael-cw.github.io/susographql/reference/suso_gql_deletecalendarevent.html</loc>
   </url>
   <url>
     <loc>https://michael-cw.github.io/susographql/reference/suso_gql_deletemap.html</loc>
@@ -40,6 +49,9 @@
     <loc>https://michael-cw.github.io/susographql/reference/suso_gql_maps.html</loc>
   </url>
   <url>
+    <loc>https://michael-cw.github.io/susographql/reference/suso_gql_pwcheck.html</loc>
+  </url>
+  <url>
     <loc>https://michael-cw.github.io/susographql/reference/suso_gql_questionnaireitems.html</loc>
   </url>
   <url>
@@ -49,12 +61,24 @@
     <loc>https://michael-cw.github.io/susographql/reference/suso_gql_questions.html</loc>
   </url>
   <url>
+    <loc>https://michael-cw.github.io/susographql/reference/suso_gql_updatecalendarevent.html</loc>
+  </url>
+  <url>
     <loc>https://michael-cw.github.io/susographql/reference/suso_gql_uploadmap.html</loc>
   </url>
   <url>
     <loc>https://michael-cw.github.io/susographql/reference/suso_gql_users.html</loc>
   </url>
   <url>
-    <loc>https://michael-cw.github.io/susographql/reference/transformers.html</loc>
+    <loc>https://michael-cw.github.io/susographql/reference/susoop_num.html</loc>
+  </url>
+  <url>
+    <loc>https://michael-cw.github.io/susographql/reference/susoop_str.html</loc>
+  </url>
+  <url>
+    <loc>https://michael-cw.github.io/susographql/reference/transformers.numeric.html</loc>
+  </url>
+  <url>
+    <loc>https://michael-cw.github.io/susographql/reference/transformers.string.html</loc>
   </url>
 </urlset>

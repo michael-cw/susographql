@@ -5,20 +5,28 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="This packages implements all the currently available
-    calls to the Survey Solutions GraphQL API including the latest one to upload
-    maps. Its build purely on the httr package and does not use any other of the 
-    available graphql client packages.">
-<title>Survey Solutions GraphQL API package • susographql</title>
+<meta name="description" content="Provides a complete suite of tools for interacting
+    with the Survey Solutions GraphQL API.  This package encompasses all
+    currently available queries and mutations, including the latest
+    features for map uploads. It is built on the modern httr2 package,
+    offering a streamlined and efficient interface without relying on
+    external GraphQL client packages. In addition to core API
+    functionalities, the package includes a range of helper functions
+    designed to facilitate the use of available query filters.">
+<title>Comprehensive Interface to the Survey Solutions GraphQL API • susographql</title>
 <script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Survey Solutions GraphQL API package">
-<meta property="og:description" content="This packages implements all the currently available
-    calls to the Survey Solutions GraphQL API including the latest one to upload
-    maps. Its build purely on the httr package and does not use any other of the 
-    available graphql client packages.">
+<!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Comprehensive Interface to the Survey Solutions GraphQL API">
+<meta property="og:description" content="Provides a complete suite of tools for interacting
+    with the Survey Solutions GraphQL API.  This package encompasses all
+    currently available queries and mutations, including the latest
+    features for map uploads. It is built on the modern httr2 package,
+    offering a streamlined and efficient interface without relying on
+    external GraphQL client packages. In addition to core API
+    functionalities, the package includes a range of helper functions
+    designed to facilitate the use of available query filters.">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -32,7 +40,7 @@
     
     <a class="navbar-brand me-2" href="index.html">susographql</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.4</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -59,13 +67,17 @@
   </div>
 </nav><div class="container template-home">
 <div class="row">
-  <main id="main" class="col-md-9"><div class="section level1">
-<div class="page-header"><h1 id="susographql">susographql<a class="anchor" aria-label="anchor" href="#susographql"></a>
+  <main id="main" class="col-md-9"><p><a href="https://docs.mysurvey.solutions/" class="external-link"><img src="reference/figures/susotools.png" align="right" height="139" style="float:right; height:139px;"></a></p>
+<div class="section level1">
+<div class="page-header"><h1 id="susographql-a-comprehensive-r-interface-to-the-survey-solutions-graphql-api">susographql: A Comprehensive R Interface to the Survey Solutions GraphQL API<a class="anchor" aria-label="anchor" href="#susographql-a-comprehensive-r-interface-to-the-survey-solutions-graphql-api"></a>
 </h1></div>
 <!-- badges: start -->
 
-<p>The susographql allows you to use the Survey Solutions GraphQL endpoints. A detailed documentation can be found <a href="https://demo.mysurvey.solutions/graphql/" class="external-link">here</a>, the package itself only contains a very rudimentary documentation.</p>
-<p>This is currently a beta version, which means the package is under (active) development. It is recommended that only users who are familiar on how to use packages in development should use this package. And certainly users are also invited to suggest improvements or to add their own functions to the package by forking.</p>
+<div data-align="justify">
+<p>The <code>susographql</code> R package offers a comprehensive interface to the World Bank’s <a href="https://mysurvey.solutions/en/" class="external-link">Survey Solutions</a> Computer Assisted Survey System (CASS) via its GraphQL API. This package supports all current queries and mutations, seamlessly integrating the latest advancements like map uploads. It harnesses the power of the modern <a href="https://httr2.r-lib.org/index.html" class="external-link">httr2</a> package, ensuring a streamlined and efficient user experience without the need for external GraphQL client packages.</p>
+<p>Beyond basic API interactions, <code>susographql</code> brings an assortment of helper functions. These are thoughtfully designed to simplify the use of query filters, elevating the user experience and broadening your data manipulation and retrieval capabilities. Dive into the details of the available Survey Solutions GraphQL queries and mutations in our comprehensive <a href="https://demo.mysurvey.solutions/graphql/" class="external-link">documentation</a>.</p>
+<p>While <code>susographql</code> is crafted as a “bare-bone” API client, delivering data largely in its original server format, it offers users unmatched flexibility. This approach ensures minimal data manipulation in the background, catering to users who prefer a hands-on approach to data handling. For those who seek a more deterministic experience with built-in data transformations and ready-to-use data structures, we recommend our <a href="https://github.com/michael-cw/SurveySolutionsAPI" class="external-link">SurveySolutionsAPI (httr version)</a> or the newer <a href="https://github.com/michael-cw/SurveySolutionsAPIv2" class="external-link">SurveySolutionsAPIv2 (httr2 version)</a>, which cover both, the <a href="https://demo.mysurvey.solutions/apidocs/index.html#" class="external-link">Survey Solutions REST API</a> and the GraphQL API handled in this package.</p>
+
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
@@ -82,7 +94,35 @@
 <!-- end list --><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"michael-cw/susographql"</span><span class="op">)</span></span></code></pre></div>
 </div>
+<div class="section level2">
+<h2 id="using-the-api-client">Using the API client<a class="anchor" aria-label="anchor" href="#using-the-api-client"></a>
+</h2>
+<ol style="list-style-type: decimal">
+<li>Set up your own personal <a href="https://mysurvey.solutions/en/" class="external-link">Survey Solutions Server</a> or request a free <a href="https://pds.mysurvey.solutions/PersonalDemoServerRequest" class="external-link">Personal Demo Server (PDS)</a> (for testing only!!).</li>
+<li>Set up your <a href="https://docs.mysurvey.solutions/headquarters/accounts/teams-and-roles-tab-creating-user-accounts/" class="external-link">API user and credentials</a>.</li>
+<li>Use the credentials to connect to the server.</li>
+</ol>
+<p>Contrary to its bigger sisters, the <a href="https://github.com/michael-cw/SurveySolutionsAPI" class="external-link">SurveySolutionsAPI (httr version)</a> and the <a href="https://github.com/michael-cw/SurveySolutionsAPIv2" class="external-link">SurveySolutionsAPIv2 (httr2 version)</a> this package does not come with a lot of helpers for credential handling and setting, nevertheless a light-weight credentials check is included:</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://michael-cw.github.io/susographql/">susographql</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="reference/suso_gql_pwcheck.html">suso_gql_pwcheck</a></span><span class="op">(</span></span>
+<span>  endpoint <span class="op">=</span> <span class="st">"https://demo.mysurvey.solutions/graphql"</span>,</span>
+<span>  user <span class="op">=</span> <span class="st">"someuser"</span>,</span>
+<span>  password <span class="op">=</span> <span class="st">"andhispassword"</span>,</span>
+<span>  workspace <span class="op">=</span> <span class="st">"primary"</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<p>Which returns either <strong>200</strong> if the credentials are correct and <strong>400</strong> otherwise. Also note, that the endpoint requires the full path including the <strong>graphql</strong> part at the end.</p>
 </div>
+<div class="section level2">
+<h2 id="feature-requests-and-bug-reports">Feature requests and bug reports<a class="anchor" aria-label="anchor" href="#feature-requests-and-bug-reports"></a>
+</h2>
+<p>You can either use the standard GitHub approach by filing a bug report/feature request <a href="https://github.com/michael-cw/SurveySolutionsAPI/issues" class="external-link">here</a> or you use the Survey Solutions user forum <a href="https://forum.mysurvey.solutions/c/api/13" class="external-link">here</a>.</p>
+<p>Please continue to check for updates, as we are constantly working to improve the package as well as integrating any new GraphQL queries or mutations as soon as they are available in <a href="https://docs.mysurvey.solutions/release-notes/" class="external-link">Survey Solutions</a>.</p>
+</div>
+</div>
+</div>
+
   </main><aside class="col-md-3"><div class="license">
 <h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
@@ -109,7 +149,7 @@
 <div class="dev-status">
 <h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://lifecycle.r-lib.org/articles/stages.html#experimental" class="external-link"><img src="https://img.shields.io/badge/lifecycle-experimental-orange.svg" alt="Lifecycle: experimental"></a></li>
+<li><a href="https://lifecycle.r-lib.org/articles/stages.html#stable" class="external-link"><img src="https://img.shields.io/badge/lifecycle-stable-green.svg" alt="Lifecycle: stable"></a></li>
 <li><a href="https://github.com/michael-cw/susographql/actions" class="external-link"><img src="https://github.com/michael-cw/susographql/workflows/R-CMD-check/badge.svg" alt="R-CMD-check"></a></li>
 <li><a href="https://github.com/michael-cw/susographql/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/michael-cw/susographql/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a></li>
 </ul>
