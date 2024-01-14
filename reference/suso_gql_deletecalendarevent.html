@@ -81,7 +81,27 @@
 <dd><p>the publicKey of the calendar event to be deleted.</p></dd>
 
 </dl></div>
+    <div class="section level2">
+    <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
+    
 
+<p>if successfull, returns a list with the executed mutation</p>
+    </div>
+
+    <div class="section level2">
+    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># suso_gql_pwcheck() == 200</span></span></span>
+<span class="r-in"><span><span class="co">## Requires Survey Solutions Server and API credentials</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Delete a calendar event for a specific event</span></span></span>
+<span class="r-in"><span><span class="co"># in timezone Chile/Continental</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">suso_gql_deletecalendarevent</span><span class="op">(</span>endpoint <span class="op">=</span> <span class="va">ep</span>, user <span class="op">=</span> <span class="va">usr</span>,</span></span>
+<span class="r-in"><span>password <span class="op">=</span> <span class="va">pass</span>, workspace <span class="op">=</span> <span class="va">ws</span>,</span></span>
+<span class="r-in"><span>publicKey <span class="op">=</span> <span class="st">"ea8b49c0-0d16-4fec-9029-72278e94a233"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
+</code></pre></div>
+    </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside></div>
 

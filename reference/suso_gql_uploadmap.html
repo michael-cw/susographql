@@ -95,9 +95,36 @@
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     
 
-<p>list with details on successfully processed maps.</p>
+<p>a list with details on successfully processed maps, if <code>usePar = TRUE</code>, the node
+element of that list will be a data.table with all the successfully processed uploads.</p>
+    </div>
+    <div class="section level2">
+    <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
+    <p>If <code>usePar = TRUE</code> a path to a directory needs to be provided containing the zipped
+map files. This feature may be useful when uploading a large number of maps, however be careful,
+with the number of parallel requests and the size of each zip file, as this may overload the server.
+Initial testing and gradually increasing the <code>n_par</code> parameter is therefore strongly recommended.</p>
     </div>
 
+    <div class="section level2">
+    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># suso_gql_pwcheck() == 200</span></span></span>
+<span class="r-in"><span><span class="co">## Requires Survey Solutions Server and API credentials</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Upload a single zip file containing maps</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">suso_gql_uploadmap</span><span class="op">(</span>endpoint <span class="op">=</span> <span class="va">ep</span>, user <span class="op">=</span> <span class="va">usr</span>,</span></span>
+<span class="r-in"><span>password <span class="op">=</span> <span class="va">pass</span>, workspace <span class="op">=</span> <span class="va">ws</span>,</span></span>
+<span class="r-in"><span>path_to_zip <span class="op">=</span> <span class="st">"./dev/shapes_for_test.zip"</span>, usePar <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Upload a directory with zip files containing maps</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">suso_gql_uploadmap</span><span class="op">(</span>endpoint <span class="op">=</span> <span class="va">ep</span>, user <span class="op">=</span> <span class="va">usr</span>,</span></span>
+<span class="r-in"><span>password <span class="op">=</span> <span class="va">pass</span>, workspace <span class="op">=</span> <span class="va">ws</span>,</span></span>
+<span class="r-in"><span>path_to_zip <span class="op">=</span> <span class="st">"./dev/allzipforupload/"</span>, usePar <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
+</code></pre></div>
+    </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside></div>
 

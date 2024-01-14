@@ -96,7 +96,28 @@
 <dd><p>time zone of the tablet device, use <code><a href="https://rdrr.io/r/base/timezones.html" class="external-link">OlsonNames</a></code></p></dd>
 
 </dl></div>
+    <div class="section level2">
+    <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
+    
 
+<p>if successfull, returns a list with the executed mutation</p>
+    </div>
+
+    <div class="section level2">
+    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># suso_gql_pwcheck() == 200</span></span></span>
+<span class="r-in"><span><span class="co">## Requires Survey Solutions Server and API credentials</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Create a calendar event for a selected interview on 2024-01-16 01:41:14,</span></span></span>
+<span class="r-in"><span><span class="co"># in timezone UTC</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">suso_gql_addinterviewcalendarevent</span><span class="op">(</span>endpoint <span class="op">=</span> <span class="va">ep</span>, user <span class="op">=</span> <span class="va">usr</span>,</span></span>
+<span class="r-in"><span>password <span class="op">=</span> <span class="va">pass</span>, workspace <span class="op">=</span> <span class="va">ws</span>, interviewId <span class="op">=</span> <span class="st">"bac4d15253b541dd86a003dc7f854e35"</span>,</span></span>
+<span class="r-in"><span>newStart <span class="op">=</span> <span class="st">"2024-01-16 01:41:14"</span>,</span></span>
+<span class="r-in"><span>startTimezone <span class="op">=</span> <span class="st">"UTC"</span>, comment <span class="op">=</span> <span class="st">"Lets Go!"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
+</code></pre></div>
+    </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside></div>
 
