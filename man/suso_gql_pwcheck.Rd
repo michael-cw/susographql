@@ -33,3 +33,10 @@ This function returns a 200 status code if credentials are correct and a 400 cod
 If the app runs interactively, status is printed to the console, if it runs in a shiny app, a status
 notification will be shown, if option \option{suso.useshiny} is \code{TRUE}.
 }
+\examples{
+
+suso_gql_pwcheck()
+
+
+
+}

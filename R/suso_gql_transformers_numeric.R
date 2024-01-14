@@ -12,18 +12,14 @@
 #'
 #' @examples
 #'
-#' \dontrun{
-#' suso_gql_interviews(endpoint = [srv], user = [user],
-#' password = [pass], workspace = "test", errorsCount = eq(0))
+#' # set filter equal to 0
+#' eq(0)
 #'
+#' # set filter to a value from 0 to 5
+#' inbetw(c(0, 5))
 #'
-#' suso_gql_interviews(endpoint = [srv], user = [user],
-#' password = [pass], workspace = "test", errorsCount = gt(0))
+#' @return a list with a single named element (operator name) to be handed over to the filter.
 #'
-#'
-#' suso_gql_interviews(endpoint = [srv], user = [user],
-#' password = [pass], workspace = "test", errorsCount = inbetw(c(0, 5))
-#' }
 #'
 #' @export
 

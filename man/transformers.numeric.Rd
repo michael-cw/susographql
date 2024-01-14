@@ -43,6 +43,9 @@ nlte(value_set)
 \arguments{
 \item{value_set}{the parameter set for the operator}
 }
+\value{
+a list with a single named element (operator name) to be handed over to the filter.
+}
 \description{
 Can be used in filters ("where") for operator selection. If none is selected, operator always defaults to `eq()`. The functions bellow are
 valid for the corresponding inputs ComparableInt64OperationFilterInput and ComparableNullableOfInt32OperationFilterInput.
@@ -78,17 +81,10 @@ a named list.
 }}
 \examples{
 
-\dontrun{
-suso_gql_interviews(endpoint = [srv], user = [user],
-password = [pass], workspace = "test", errorsCount = eq(0))
+# set filter equal to 0
+eq(0)
 
-
-suso_gql_interviews(endpoint = [srv], user = [user],
-password = [pass], workspace = "test", errorsCount = gt(0))
-
-
-suso_gql_interviews(endpoint = [srv], user = [user],
-password = [pass], workspace = "test", errorsCount = inbetw(c(0, 5))
-}
+# set filter to a value from 0 to 5
+inbetw(c(0, 5))
 
 }
