@@ -3,8 +3,7 @@ Type: Package
 Title: Comprehensive Interface to the Survey Solutions GraphQL API
 Version: 0.1.4
 Authors@R: c(
-    person("Michael", "Wild", , "mwild@worldbank.org", role = c("cre", "aut")),
-    person("The Worldbank", role = c("cph", "fnd"))
+    person("Michael", "Wild", , "mwild@worldbank.org", role = c("cre", "aut", "cph"))
    )
 Description: Provides a complete suite of tools for interacting
     with the Survey Solutions GraphQL API.  This package encompasses all
