@@ -1,7 +1,7 @@
 Package: susographql
 Type: Package
 Title: Comprehensive Interface to the Survey Solutions GraphQL API
-Version: 0.1.2
+Version: 0.1.4
 Authors@R: person("Michael", "Wild", , "mwild@worldbank.org", role = c("cre", "aut"))
 Description: Provides a complete suite of tools for interacting
     with the Survey Solutions GraphQL API.  This package encompasses all
@@ -10,9 +10,7 @@ Description: Provides a complete suite of tools for interacting
     offering a streamlined and efficient interface without relying on
     external GraphQL client packages. In addition to core API
     functionalities, the package includes a range of helper functions
-    designed to facilitate the use of available query filters, enhancing
-    the user experience and expanding the capabilities for data
-    manipulation and retrieval.
+    designed to facilitate the use of available query filters.
 License: GPL (>= 3)
 Encoding: UTF-8
 LazyData: true
