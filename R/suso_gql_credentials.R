@@ -10,12 +10,11 @@
 #'
 #' @return 200 code if correct, 400 if incorrect.
 #'
-#' @details
-#' If the app runs interactively, status is printed to the console, if it runs in a shiny app, a status
-#' notification will be shown, if option \option{suso.useshiny} is \code{TRUE}.
 #'
 #' @examples
 #'
+#'
+#' # With default credentials returns 400
 #' suso_gql_pwcheck()
 #'
 #'
