@@ -62,9 +62,28 @@ suso_gql_users(
 
 \item{skip}{skip the first integer number of maps}
 }
+\value{
+if successfull, returns a list with the (filtered) responses
+}
 \description{
 Allows the user to retrieve filtered or unfiltered user data.
 }
 \details{
 ATTENTION: This requires admin credentials, regular API credentials won't work
+}
+\examples{
+\dontshow{if (suso_gql_pwcheck()==200) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+## Requires Survey Solutions Server and ADMIN credentials!!
+
+# Get all users without filter
+
+suso_gql_users(endpoint = ep, user = adminuser,
+password = adminpass, sortby_userName = "ASC")
+
+# Get only supervisors
+
+suso_gql_users(endpoint = ep, user = adminuser,
+password = adminuser, , sortby_userName = "ASC",
+role = "SUPERVISOR")
+\dontshow{\}) # examplesIf}
 }

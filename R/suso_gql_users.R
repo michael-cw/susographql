@@ -23,6 +23,23 @@
 #' @param take take the specified integer numeber of maps
 #' @param skip skip the first integer number of maps
 #'
+#'
+#' @return if successfull, returns a list with the (filtered) responses
+#'
+#' @examplesIf suso_gql_pwcheck()==200
+#' ## Requires Survey Solutions Server and ADMIN credentials!!
+#'
+#' # Get all users without filter
+#'
+#' suso_gql_users(endpoint = ep, user = adminuser,
+#' password = adminpass, sortby_userName = "ASC")
+#'
+#' # Get only supervisors
+#'
+#' suso_gql_users(endpoint = ep, user = adminuser,
+#' password = adminuser, , sortby_userName = "ASC",
+#' role = "SUPERVISOR")
+#'
 #' @export
 
 
@@ -79,13 +96,42 @@ suso_gql_users <- function(endpoint = NULL,
   variables$where<-NULL
 
   if (!is.null(id)) {
-    variables$where$id$eq <- id
+    id<-.checkInput(id)
+    variables$where$id <- id
   }
   if (!is.null(role)) {
-    variables$where$role$eq <- role
+    role<-.checkInput(role)
+    variables$where$role <- role
   }
   if (!is.null(userName)) {
-    variables$where$userName$eq <- userName
+    userName<-.checkInput(userName)
+    variables$where$userName <- userName
+  }
+
+  if (!is.null(fullName)) {
+    fullName<-.checkInput(fullName)
+    variables$where$fullName <- fullName
+  }
+  if (!is.null(isArchived)) {
+    isArchived<-.checkInput(isArchived)
+    variables$where$isArchived <- isArchived
+  }
+  if (!is.null(isLocked)) {
+    isLocked<-.checkInput(isLocked)
+    variables$where$isLocked <- isLocked
+  }
+
+  if (!is.null(creationDate)) {
+    creationDate<-.checkInput(creationDate)
+    variables$where$creationDate <- creationDate
+  }
+  if (!is.null(email)) {
+    email<-.checkInput(email)
+    variables$where$email <- email
+  }
+  if (!is.null(phoneNumber)) {
+    phoneNumber<-.checkInput(phoneNumber)
+    variables$where$phoneNumber <- phoneNumber
   }
 
   # REST FOLLOWS LATER!!
