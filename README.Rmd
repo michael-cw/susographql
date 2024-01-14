@@ -14,7 +14,7 @@ knitr::opts_chunk$set(
 ```
 
 
-<a href='https://docs.mysurvey.solutions/'><img src="man/figures/susotools.png" align="right" height="139" style="float:right; height:139px;"/></a>
+<a href='https://docs.mysurvey.solutions/'><img src="man/figures/susotools.png" align="right" height="139"/></a>
 
 
 # susographql: A Comprehensive R Interface to the Survey Solutions GraphQL API
@@ -33,9 +33,9 @@ The `susographql` R package offers a comprehensive interface to the World Bank's
 
 Beyond basic API interactions, `susographql` brings an assortment of helper functions. These are thoughtfully designed to simplify the use of query filters, elevating the user experience and broadening your data manipulation and retrieval capabilities. Dive into the details of the available Survey Solutions GraphQL queries and mutations in the comprehensive [API documentation](https://demo.mysurvey.solutions/graphql/).
 
-While `susographql` is crafted as a "bare-bone" API client, delivering data largely in its original server format, it offers users unmatched flexibility in designing their own, more complex processes fully customized to their needs. This approach also means minimal data manipulation in the background, catering to users who prefer a hands-on approach to data handling. For those who seek a more deterministic experience with built-in data transformations and ready-to-use data structures, we recommend our [SurveySolutionsAPI (httr version)](https://github.com/michael-cw/SurveySolutionsAPI) or the newer [SurveySolutionsAPIv2 (httr2 version)](https://github.com/michael-cw/SurveySolutionsAPIv2), which cover both, the [Survey Solutions REST API](https://demo.mysurvey.solutions/apidocs/index.html#) and the GraphQL API handled in this package[^1].
+While `susographql` is crafted as a "bare-bone" API client, delivering data largely in its original server format, it offers users unmatched flexibility in designing their own, more complex processes fully customized to their needs. This approach also means minimal data manipulation in the background, catering to users who prefer a hands-on approach to data handling. For those who seek a more deterministic experience with built-in data transformations and ready-to-use data structures including support for integration in an R Shiny application, we recommend our [SurveySolutionsAPI (httr version)](https://github.com/michael-cw/SurveySolutionsAPI) or the newer [SurveySolutionsAPIv2 (httr2 version)](https://github.com/michael-cw/SurveySolutionsAPIv2), which cover both, the [Survey Solutions REST API](https://demo.mysurvey.solutions/apidocs/index.html) and the GraphQL API handled in this package[^1].
 
-</p>
+
 
 ## Installation
 
@@ -88,7 +88,7 @@ You can either use the standard GitHub approach by filing a bug report/feature r
 Please continue to check for updates, as we are constantly working to improve the package as well as integrating any new GraphQL queries or mutations as soon as they are available in [Survey Solutions](https://docs.mysurvey.solutions/release-notes/).
 
 
-[^1]: The [SurveySolutionsAPIv2 (httr2 version)](https://github.com/michael-cw/SurveySolutionsAPIv2) package uses several of the functions from the `susographql` package.
+[^1]:  The [SurveySolutionsAPIv2 (httr2 version)](https://github.com/michael-cw/SurveySolutionsAPIv2) package uses several of the functions from the `susographql` package.
 
 
 

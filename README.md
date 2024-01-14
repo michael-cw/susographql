@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-<a href='https://docs.mysurvey.solutions/'><img src="man/figures/susotools.png" align="right" height="139" style="float:right; height:139px;"/></a>
+<a href='https://docs.mysurvey.solutions/'><img src="man/figures/susotools.png" align="right" height="139"/></a>
 
 # susographql: A Comprehensive R Interface to the Survey Solutions GraphQL API
 
@@ -13,7 +13,7 @@ stable](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://lifecy
 [![R-CMD-check](https://github.com/michael-cw/susographql/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/michael-cw/susographql/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
-<div data-align="justify">
+<div align="justify">
 
 The `susographql` R package offers a comprehensive interface to the
 World Bank’s [Survey Solutions](https://mysurvey.solutions/en/) Computer
@@ -39,15 +39,14 @@ customized to their needs. This approach also means minimal data
 manipulation in the background, catering to users who prefer a hands-on
 approach to data handling. For those who seek a more deterministic
 experience with built-in data transformations and ready-to-use data
-structures, we recommend our [SurveySolutionsAPI (httr
+structures including support for integration in an R Shiny application,
+we recommend our [SurveySolutionsAPI (httr
 version)](https://github.com/michael-cw/SurveySolutionsAPI) or the newer
 [SurveySolutionsAPIv2 (httr2
 version)](https://github.com/michael-cw/SurveySolutionsAPIv2), which
 cover both, the [Survey Solutions REST
-API](https://demo.mysurvey.solutions/apidocs/index.html#) and the
-GraphQL API handled in this package\[1\].
-
-</p>
+API](https://demo.mysurvey.solutions/apidocs/index.html) and the GraphQL
+API handled in this package[^1].
 
 ## Installation
 
@@ -122,7 +121,7 @@ Solutions](https://docs.mysurvey.solutions/release-notes/).
 
 </div>
 
-1.  The [SurveySolutionsAPIv2 (httr2
+[^1]: The [SurveySolutionsAPIv2 (httr2
     version)](https://github.com/michael-cw/SurveySolutionsAPIv2)
     package uses several of the functions from the `susographql`
     package.
