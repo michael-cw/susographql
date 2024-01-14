@@ -28,8 +28,8 @@ Beyond basic API interactions, `susographql` brings an assortment of
 helper functions. These are thoughtfully designed to simplify the use of
 query filters, elevating the user experience and broadening your data
 manipulation and retrieval capabilities. Dive into the details of the
-Survey Solutions GraphQL queries and mutations in our comprehensive
-[documentation](https://demo.mysurvey.solutions/graphql/).
+available Survey Solutions GraphQL queries and mutations in our
+comprehensive [documentation](https://demo.mysurvey.solutions/graphql/).
 
 While `susographql` is crafted as a “bare-bone” API client, delivering
 data largely in its original server format, it offers users unmatched
@@ -40,7 +40,10 @@ built-in data transformations and ready-to-use data structures, we
 recommend our [SurveySolutionsAPI (httr
 version)](https://github.com/michael-cw/SurveySolutionsAPI) or the newer
 [SurveySolutionsAPIv2 (httr2
-version)](https://github.com/michael-cw/SurveySolutionsAPIv2).
+version)](https://github.com/michael-cw/SurveySolutionsAPIv2), which
+cover both, the [Survey Solutions REST
+API](https://demo.mysurvey.solutions/apidocs/index.html#) and the
+GraphQL API handled in this package.
 
 ## Installation
 
