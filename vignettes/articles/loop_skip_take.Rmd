@@ -1,0 +1,14 @@
+---
+title: "Using skip and take in a loop"
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(susographql)
+```
