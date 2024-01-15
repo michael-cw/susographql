@@ -165,8 +165,8 @@ rows of the final data.frame.</p>
 <code class="sourceCode R"><span></span>
 <span><span class="co"># 1. get first list (limit is automatic 100 but we use the parameter here for demonstration)</span></span>
 <span><span class="va">asslist</span><span class="op">&lt;-</span><span class="fu"><a href="../reference/suso_gql_assignments.html">suso_gql_assignments</a></span><span class="op">(</span></span>
-<span>  endpoint <span class="op">=</span> <span class="st">"https://michael-wild-demo.mysurvey.solutions/graphql"</span>,</span>
-<span>  user <span class="op">=</span> <span class="st">"apiUser"</span>, password <span class="op">=</span> <span class="st">"Nitro12345"</span>, workspace <span class="op">=</span> <span class="st">"primary"</span>,</span>
+<span>  endpoint <span class="op">=</span> <span class="va">ep</span>,</span>
+<span>  user <span class="op">=</span> <span class="va">usr</span>, password <span class="op">=</span> <span class="va">pass</span>, workspace <span class="op">=</span> <span class="st">"primary"</span>,</span>
 <span>  take <span class="op">=</span> <span class="fl">100</span></span>
 <span><span class="op">)</span></span>
 <span></span>
@@ -179,8 +179,8 @@ rows of the final data.frame.</p>
 <span><span class="co"># skip/take augment</span></span>
 <span><span class="va">ass_loop</span><span class="op">&lt;-</span><span class="kw">function</span><span class="op">(</span><span class="va">i</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="va">asslist</span><span class="op">&lt;-</span><span class="fu"><a href="../reference/suso_gql_assignments.html">suso_gql_assignments</a></span><span class="op">(</span></span>
-<span>    endpoint <span class="op">=</span> <span class="st">"https://michael-wild-demo.mysurvey.solutions/graphql"</span>,</span>
-<span>    user <span class="op">=</span> <span class="st">"apiUser"</span>, password <span class="op">=</span> <span class="st">"Nitro12345"</span>, workspace <span class="op">=</span> <span class="st">"primary"</span>,</span>
+<span>    endpoint <span class="op">=</span> <span class="va">ep</span>,</span>
+<span>    user <span class="op">=</span> <span class="va">usr</span>, password <span class="op">=</span> <span class="va">pass</span>, workspace <span class="op">=</span> <span class="st">"primary"</span>,</span>
 <span>    skip <span class="op">=</span> <span class="fl">100</span><span class="op">*</span><span class="va">i</span>, take <span class="op">=</span> <span class="fl">100</span></span>
 <span>  <span class="op">)</span></span>
 <span>  <span class="co"># remove calenderevent otherwise rbind gets difficult</span></span>
