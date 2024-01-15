@@ -110,8 +110,8 @@ Same as above, however now we keep the nested data.frame column.
 
 # 1. get first list (limit is automatic 100 but we use the parameter here for demonstration)
 asslist<-suso_gql_assignments(
-  endpoint = "https://michael-wild-demo.mysurvey.solutions/graphql",
-  user = "apiUser", password = "Nitro12345", workspace = "primary",
+  endpoint = ep,
+  user = usr, password = pass, workspace = "primary",
   take = 100
 )
 
@@ -124,8 +124,8 @@ n_loops<-ceiling(rest/100)
 # skip/take augment
 ass_loop<-function(i) {
   asslist<-suso_gql_assignments(
-    endpoint = "https://michael-wild-demo.mysurvey.solutions/graphql",
-    user = "apiUser", password = "Nitro12345", workspace = "primary",
+    endpoint = ep,
+    user = usr, password = pass, workspace = "primary",
     skip = 100*i, take = 100
   )
   # remove calenderevent otherwise rbind gets difficult
