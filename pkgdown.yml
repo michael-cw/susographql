@@ -1,8 +1,9 @@
 pandoc: 2.19.2
 pkgdown: 2.0.7
 pkgdown_sha: ~
-articles: {}
-last_built: 2024-01-14T18:18Z
+articles:
+  loop_skip_take: loop_skip_take.html
+last_built: 2024-01-15T11:09Z
 urls:
   reference: https://michael-cw.github.io/susographql/reference
   article: https://michael-cw.github.io/susographql/articles
