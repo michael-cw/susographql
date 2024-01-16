@@ -81,7 +81,7 @@ Which returns either **200** if the credentials are correct and **400** otherwis
 
 ## Feature requests and bug reports
 
-You can either use the standard GitHub approach by filing a bug report/feature request [here](https://github.com/michael-cw/SurveySolutionsAPI/issues) or you use the Survey Solutions user forum [here](https://forum.mysurvey.solutions/c/api/13).
+You can either use the standard GitHub approach by filing a bug report/feature request [here](https://github.com/michael-cw/SurveySolutionsAPI/issues) or you use the Survey Solutions user forum.
 
 Please continue to check for updates, as we are constantly working to improve the package as well as integrating any new GraphQL queries or mutations as soon as they are available in [Survey Solutions](https://docs.mysurvey.solutions/release-notes/).
 

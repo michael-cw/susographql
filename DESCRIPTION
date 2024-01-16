@@ -1,16 +1,16 @@
 Package: susographql
 Type: Package
-Title: Comprehensive Interface to the Survey Solutions GraphQL API
-Version: 0.1.4
+Title: Comprehensive Interface to the Survey Solutions 'GraphQL' API
+Version: 0.1.5
 Authors@R: c(
     person("Michael", "Wild", , "mwild@worldbank.org", role = c("cre", "aut", "cph"))
    )
 Description: Provides a complete suite of tools for interacting
-    with the Survey Solutions GraphQL API.  This package encompasses all
+    with the Survey Solutions 'GraphQL' API.  This package encompasses all
     currently available queries and mutations, including the latest
-    features for map uploads. It is built on the modern httr2 package,
+    features for map uploads. It is built on the modern 'httr2' package,
     offering a streamlined and efficient interface without relying on
-    external GraphQL client packages. In addition to core API
+    external 'GraphQL' client packages. In addition to core API
     functionalities, the package includes a range of helper functions
     designed to facilitate the use of available query filters.
 License: GPL (>= 3)
@@ -35,7 +35,6 @@ Suggests:
     knitr,
     rmarkdown,
     testthat (>= 3.0.0)
-VignetteBuilder: knitr
 URL: https://michael-cw.github.io/susographql/
 BugReports: https://github.com/michael-cw/susographql/issues
 Config/testthat/edition: 3

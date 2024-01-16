@@ -102,8 +102,7 @@ the **graphql** part at the end.
 You can either use the standard GitHub approach by filing a bug
 report/feature request
 [here](https://github.com/michael-cw/SurveySolutionsAPI/issues) or you
-use the Survey Solutions user forum
-[here](https://forum.mysurvey.solutions/c/api/13).
+use the Survey Solutions user forum.
 
 Please continue to check for updates, as we are constantly working to
 improve the package as well as integrating any new GraphQL queries or
