@@ -1,4 +1,5 @@
 test_that("default credentials check", {
+  testthat::skip_on_cran()
   expect_equal(suso_gql_pwcheck(), 400)
 })
 
