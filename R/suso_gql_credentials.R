@@ -20,11 +20,21 @@
 #'
 #'
 #' @export
-suso_gql_pwcheck<-function(endpoint="https://demo.mysurvey.solutions/graphql",
-                       user="someuser",
-                       password="andhispassword",
-                       workspace = "primary",
+suso_gql_pwcheck<-function(endpoint=NULL,
+                       user=NULL,
+                       password=NULL,
+                       workspace = NULL,
                        token = NULL) {
+  if(is.null(endpoint) | is.null(user) | is.null(password)) {
+    # return 400 if any is missing
+    return(400)
+  }
+
+  # also skip when empty string
+  if((endpoint=="") | (user=="") | (password=="")) {
+    # return 400 if any is missing
+    return(400)
+  }
   ## workspace default
   workspace<-.ws_default(ws = workspace)
   # check (.helpers.R)

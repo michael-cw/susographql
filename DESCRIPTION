@@ -17,7 +17,7 @@ License: GPL (>= 3)
 Encoding: UTF-8
 LazyData: true
 Imports: 
-    curl,
+    curl (>= 5.1.0),
     glue,
     httr2,
     jsonlite,
@@ -25,14 +25,17 @@ Imports:
     stringr,
     data.table,
     withr,
-    cli,
-    rlang,
+    cli (>= 3.0.0),
+    rlang (>= 1.1.0),
     lubridate
 Depends:
-    R (>= 3.4)
+    R (>= 3.6)
 RoxygenNote: 7.2.3
 Suggests: 
     knitr,
-    rmarkdown
+    rmarkdown,
+    testthat (>= 3.0.0)
 VignetteBuilder: knitr
 URL: https://michael-cw.github.io/susographql/
+BugReports: https://github.com/michael-cw/susographql/issues
+Config/testthat/edition: 3

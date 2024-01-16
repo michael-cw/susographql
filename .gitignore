@@ -1,12 +1,9 @@
 .Rproj.user
 .Rhistory
-.Rdata
 .RData
 .httr-oauth
 .DS_Store
 susographql.Rproj
-CREDENTIALS!!REMOVE.R
-tests
 dev
 Meta
 docs

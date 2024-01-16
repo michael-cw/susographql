@@ -5,10 +5,10 @@
 \title{Utility function to check if credentials are correct}
 \usage{
 suso_gql_pwcheck(
-  endpoint = "https://demo.mysurvey.solutions/graphql",
-  user = "someuser",
-  password = "andhispassword",
-  workspace = "primary",
+  endpoint = NULL,
+  user = NULL,
+  password = NULL,
+  workspace = NULL,
   token = NULL
 )
 }

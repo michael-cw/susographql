@@ -50,26 +50,17 @@ API handled in this package[^1].
 
 ## Installation
 
-  - Install R: <https://cran.r-project.org/mirrors.html> (version 4.1.1
-    or greater)
-
-  - Install R Studio: <https://rstudio.com/products/rstudio/download/>
-    (version 1.2.5001-3 or newer)
-
-  - Make sure the *devtools* package is installed, if not install it
-    with:
-
-<!-- end list -->
+You can either install the stable version from CRAN:
 
 ``` r
-install.packages("devtools")
+
+install.packages("susographql")
 ```
 
-  - After that install the actual package:
-
-<!-- end list -->
+Or install the development version with:
 
 ``` r
+
 devtools::install_github("michael-cw/susographql")
 ```
 
@@ -121,7 +112,7 @@ Solutions](https://docs.mysurvey.solutions/release-notes/).
 
 </div>
 
-[^1]: The [SurveySolutionsAPIv2 (httr2
+[^1]  The [SurveySolutionsAPIv2 (httr2
     version)](https://github.com/michael-cw/SurveySolutionsAPIv2)
     package uses several of the functions from the `susographql`
     package.

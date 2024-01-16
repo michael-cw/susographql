@@ -39,21 +39,19 @@ While `susographql` is crafted as a "bare-bone" API client, delivering data larg
 
 ## Installation
 
-* Install R: https://cran.r-project.org/mirrors.html (version 4.1.1 or greater)
-
-* Install R Studio: https://rstudio.com/products/rstudio/download/ (version 1.2.5001-3 or newer)
-
-* Make sure the *devtools* package is installed, if not install it with:
+You can either install the stable version from CRAN:
 
 ```{r devtoolsinst,eval=FALSE, echo=TRUE}
-install.packages("devtools")
+
+install.packages("susographql")
 
 ```
 
 
-* After that install the actual package:
+Or install the development version with:
 
 ```{r install,eval=FALSE, echo=TRUE}
+
 devtools::install_github("michael-cw/susographql")
 
 ```

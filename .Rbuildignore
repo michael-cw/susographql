@@ -17,3 +17,4 @@ $run_dev.*
 ^docs$
 ^pkgdown$
 ^vignettes/articles$
+^cran-comments\.md$
