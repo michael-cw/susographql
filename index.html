@@ -66,7 +66,14 @@
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="search.json" id="search-input" placeholder="Search for" autocomplete="off">
 </form>
 
-      <ul class="navbar-nav"></ul>
+      <ul class="navbar-nav">
+<li class="nav-item">
+  <a class="external-link nav-link" href="https://github.com/michael-cw/susographql/" aria-label="github">
+    <span class="fab fa fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
 </div>
 
     
@@ -82,22 +89,18 @@
 <div align="justify">
 <p>The <code>susographql</code> R package offers a comprehensive interface to the World Bank’s <a href="https://mysurvey.solutions/en/" class="external-link">Survey Solutions</a> Computer Assisted Survey System (CASS) via its GraphQL API. This package supports all current queries and mutations, seamlessly integrating the latest advancements like map uploads. It harnesses the power of the modern <a href="https://httr2.r-lib.org/index.html" class="external-link">httr2</a> package, ensuring a streamlined and efficient user experience without the need for external GraphQL client packages.</p>
 <p>Beyond basic API interactions, <code>susographql</code> brings an assortment of helper functions. These are thoughtfully designed to simplify the use of query filters, elevating the user experience and broadening your data manipulation and retrieval capabilities. Dive into the details of the available Survey Solutions GraphQL queries and mutations in the comprehensive <a href="https://demo.mysurvey.solutions/graphql/" class="external-link">API documentation</a>.</p>
-<p>While <code>susographql</code> is crafted as a “bare-bone” API client, delivering data largely in its original server format, it offers users unmatched flexibility in designing their own, more complex processes fully customized to their needs. This approach also means minimal data manipulation in the background, catering to users who prefer a hands-on approach to data handling. For those who seek a more deterministic experience with built-in data transformations and ready-to-use data structures including support for integration in an R Shiny application, we recommend our <a href="https://github.com/michael-cw/SurveySolutionsAPI" class="external-link">SurveySolutionsAPI (httr version)</a> or the newer <a href="https://github.com/michael-cw/SurveySolutionsAPIv2" class="external-link">SurveySolutionsAPIv2 (httr2 version)</a>, which cover both, the <a href="https://demo.mysurvey.solutions/apidocs/index.html" class="external-link">Survey Solutions REST API</a> and the GraphQL API handled in this package<a class="footnote-ref" tabindex="0" data-bs-toggle="popover" data-bs-content='&lt;p&gt;The &lt;a href="https://github.com/michael-cw/SurveySolutionsAPIv2" class="external-link"&gt;SurveySolutionsAPIv2 (httr2 version)&lt;/a&gt; package uses several of the functions from the &lt;code&gt;susographql&lt;/code&gt; package.&lt;/p&gt;'><sup>1</sup></a>.</p>
+<p>While <code>susographql</code> is crafted as a “bare-bone” API client, delivering data largely in its original server format, it offers users unmatched flexibility in designing their own, more complex processes fully customized to their needs. This approach also means minimal data manipulation in the background, catering to users who prefer a hands-on approach to data handling. For those who seek a more deterministic experience with built-in data transformations and ready-to-use data structures including support for integration in an R Shiny application, we recommend our <a href="https://github.com/michael-cw/SurveySolutionsAPI" class="external-link">SurveySolutionsAPI (httr version)</a> or the newer <a href="https://github.com/michael-cw/SurveySolutionsAPIv2" class="external-link">SurveySolutionsAPIv2 (httr2 version)</a>, which cover both, the <a href="https://demo.mysurvey.solutions/apidocs/index.html" class="external-link">Survey Solutions REST API</a> and the GraphQL API handled in this package[^1].</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
-<ul>
-<li><p>Install R: <a href="https://cran.r-project.org/mirrors.html" class="external-link uri">https://cran.r-project.org/mirrors.html</a> (version 4.1.1 or greater)</p></li>
-<li><p>Install R Studio: <a href="https://rstudio.com/products/rstudio/download/" class="external-link uri">https://rstudio.com/products/rstudio/download/</a> (version 1.2.5001-3 or newer)</p></li>
-<li><p>Make sure the <em>devtools</em> package is installed, if not install it with:</p></li>
-</ul>
-<!-- end list --><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"devtools"</span><span class="op">)</span></span></code></pre></div>
-<ul>
-<li>After that install the actual package:</li>
-</ul>
-<!-- end list --><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"michael-cw/susographql"</span><span class="op">)</span></span></code></pre></div>
+<p>You can either install the stable version from CRAN:</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"susographql"</span><span class="op">)</span></span></code></pre></div>
+<p>Or install the development version with:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
+<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"michael-cw/susographql"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="using-the-api-client">Using the API client<a class="anchor" aria-label="anchor" href="#using-the-api-client"></a>
@@ -126,10 +129,18 @@
 <p>Please continue to check for updates, as we are constantly working to improve the package as well as integrating any new GraphQL queries or mutations as soon as they are available in <a href="https://docs.mysurvey.solutions/release-notes/" class="external-link">Survey Solutions</a>.</p>
 </div>
 </div>
+<p>[^1] The <a href="https://github.com/michael-cw/SurveySolutionsAPIv2" class="external-link">SurveySolutionsAPIv2 (httr2 version)</a> package uses several of the functions from the <code>susographql</code> package.</p>
 </div>
 
+  </main><aside class="col-md-3"><div class="links">
+<h2 data-toc-skip>Links</h2>
+<ul class="list-unstyled">
+<li><a href="https://github.com/michael-cw/susographql/" class="external-link">Browse source code</a></li>
+<li><a href="https://github.com/michael-cw/susographql/issues" class="external-link">Report a bug</a></li>
+</ul>
+</div>
 
-  </main><aside class="col-md-3"><div class="license">
+<div class="license">
 <h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
 <li><a href="LICENSE.html">Full license</a></li>
