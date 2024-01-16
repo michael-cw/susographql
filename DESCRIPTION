@@ -29,7 +29,7 @@ Imports:
     rlang,
     lubridate
 Depends:
-    R (>= 3.3.0)
+    R (>= 3.4)
 RoxygenNote: 7.2.3
 Suggests: 
     knitr,
