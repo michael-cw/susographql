@@ -94,8 +94,8 @@ suso_gql_pwcheck(
 ```
 
 Which returns either **200** if the credentials are correct and **400**
-otherwise. Also note, that the endpoint requires the full path including
-the **graphql** part at the end.
+if incorrect. Also note, that the endpoint requires the full path
+including the **graphql** part at the end.
 
 ## Feature requests and bug reports
 
@@ -111,7 +111,7 @@ Solutions](https://docs.mysurvey.solutions/release-notes/).
 
 </div>
 
-[^1]  The [SurveySolutionsAPIv2 (httr2
+[^1]:  The [SurveySolutionsAPIv2 (httr2
     version)](https://github.com/michael-cw/SurveySolutionsAPIv2)
     package uses several of the functions from the `susographql`
     package.

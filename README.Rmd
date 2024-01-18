@@ -77,7 +77,7 @@ suso_gql_pwcheck(
 
 ```
 
-Which returns either **200** if the credentials are correct and **400** otherwise. Also note, that the endpoint requires the full path including the **graphql** part at the end.
+Which returns either **200** if the credentials are correct and **400** if incorrect. Also note, that the endpoint requires the full path including the **graphql** part at the end.
 
 ## Feature requests and bug reports
 

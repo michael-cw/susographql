@@ -1,9 +1,7 @@
 ## Resubmission
-This is a resubmission, the following problems have been fixed:
+This is a resubmission, the following problem has been fixed:
 
-* GraphQL and httr2 now in single quotes in DESCRIPTION
-* Removed VignetteBuilder field in DESCRIPTION
-* Removed link https://forum.mysurvey.solutions/c/api/13 from README.md
+* Added demo server URL <https://demo.mysurvey.solutions/graphql/> to DESCRIPTION
 
 ## R CMD check results
 
