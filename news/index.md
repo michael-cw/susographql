@@ -1,0 +1,41 @@
+# Changelog
+
+## susographql (development version)
+
+## susographql 0.1.7
+
+- Updated maintainer contact email address.
+- Increased minimum R dependency to R \>= 4.1.0 due to use of base pipe
+  `|>` and lambda `\(...)` syntax.
+- Removed unused imports (`jsonlite`, `readr`, `stringr`).
+
+## susographql 0.1.4
+
+- stable release
+
+## susographql 0.1.3
+
+### Enhancement
+
+- added support for parallel upload of maps
+- added helpers (susoop_num, susoop_str) for filter operator selection
+- added retry for transient http errors (500)
+
+## susographql 0.1.2
+
+### Enhancement
+
+- complete transition to the httr2 package
+- added helper functions for request creation & processing
+
+## susographql 0.1.1
+
+### Enhancement
+
+- new sorting options
+- new filter options
+- added map upload
+
+## susographql 0.1.0
+
+- beta release of the package.

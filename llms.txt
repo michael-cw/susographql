@@ -1,0 +1,178 @@
+# susographql: A Comprehensive R Interface to the Survey Solutions GraphQL API
+
+[![](reference/figures/susotools.png)](https://docs.mysurvey.solutions/)
+
+The `susographql` R package offers a comprehensive interface to the
+World Bank’s [Survey Solutions](https://mysurvey.solutions/en/) Computer
+Assisted Survey System (CASS) via its GraphQL API. This package supports
+all current queries and mutations, seamlessly integrating the latest
+advancements like map uploads. It harnesses the power of the modern
+[httr2](https://httr2.r-lib.org/index.html) package, ensuring a
+streamlined and efficient user experience without the need for external
+GraphQL client packages.
+
+Beyond basic API interactions, `susographql` brings an assortment of
+helper functions. These are thoughtfully designed to simplify the use of
+query filters, elevating the user experience and broadening your data
+manipulation and retrieval capabilities. Dive into the details of the
+available Survey Solutions GraphQL queries and mutations in the
+comprehensive [API
+documentation](https://demo.mysurvey.solutions/graphql/schema).
+
+While `susographql` is crafted as a “bare-bone” API client, delivering
+data largely in its original server format, it offers users unmatched
+flexibility in designing their own, more complex processes fully
+customized to their needs. This approach also means minimal data
+manipulation in the background, catering to users who prefer a hands-on
+approach to data handling. For those who seek a more deterministic
+experience with built-in data transformations and ready-to-use data
+structures including support for integration in an R Shiny application,
+we recommend our [SurveySolutionsAPI (httr
+version)](https://github.com/michael-cw/SurveySolutionsAPI) or the newer
+[SurveySolutionsAPIv2 (httr2
+version)](https://github.com/michael-cw/SurveySolutionsAPIv2), which
+cover both, the [Survey Solutions REST
+API](https://demo.mysurvey.solutions/apidocs/index.html) and the GraphQL
+API handled in this package[^1].
+
+## Installation
+
+You can either install the stable version from CRAN:
+
+``` r
+
+
+install.packages("susographql")
+```
+
+Or install the development version with:
+
+``` r
+
+
+devtools::install_github("michael-cw/susographql")
+```
+
+## Using the API client
+
+1.  Set up your own personal [Survey Solutions
+    Server](https://mysurvey.solutions/en/) or request a free [Personal
+    Demo Server
+    (PDS)](https://pds.mysurvey.solutions/PersonalDemoServerRequest)
+    (for testing only!!).
+2.  Set up your [API user and
+    credentials](https://docs.mysurvey.solutions/headquarters/accounts/teams-and-roles-tab-creating-user-accounts/).
+3.  Use the credentials to connect to the server.
+
+Contrary to its bigger sisters, the [SurveySolutionsAPI (httr
+version)](https://github.com/michael-cw/SurveySolutionsAPI) and the
+[SurveySolutionsAPIv2 (httr2
+version)](https://github.com/michael-cw/SurveySolutionsAPIv2) this
+package does not come with a lot of helpers for credential handling and
+setting, nevertheless a light-weight credentials check is included:
+
+``` r
+
+library(susographql)
+
+suso_gql_pwcheck(
+  endpoint = "https://demo.mysurvey.solutions/graphql",
+  user = "someuser",
+  password = "andhispassword",
+  workspace = "primary"
+)
+```
+
+Which returns either **200** if the credentials are correct and **400**
+if incorrect. Also note, that the endpoint requires the full path
+including the **graphql** part at the end.
+
+## Feature requests and bug reports
+
+You can either use the standard GitHub approach by filing a bug
+report/feature request
+[here](https://github.com/michael-cw/SurveySolutionsAPI/issues) or you
+use the Survey Solutions user forum.
+
+Please continue to check for updates, as we are constantly working to
+improve the package as well as integrating any new GraphQL queries or
+mutations as soon as they are available in [Survey
+Solutions](https://docs.mysurvey.solutions/release-notes/).
+
+[^1]: The [SurveySolutionsAPIv2 (httr2
+    version)](https://github.com/michael-cw/SurveySolutionsAPIv2)
+    package uses several of the functions from the `susographql`
+    package.
+
+# Package index
+
+## All functions
+
+- [`suso_gql_addassignmentcalendarevent()`](https://michael-cw.github.io/susographql/reference/suso_gql_addassignmentcalendarevent.md)
+  : Add a calendar event to an Assignment
+- [`suso_gql_addinterviewcalendarevent()`](https://michael-cw.github.io/susographql/reference/suso_gql_addinterviewcalendarevent.md)
+  : Add a calendar event to an Interview
+- [`suso_gql_addusertomap()`](https://michael-cw.github.io/susographql/reference/suso_gql_addusertomap.md)
+  : Assigns a map to a user
+- [`suso_gql_assignments()`](https://michael-cw.github.io/susographql/reference/suso_gql_assignments.md)
+  : Get all assignments
+- [`suso_gql_deletecalendarevent()`](https://michael-cw.github.io/susographql/reference/suso_gql_deletecalendarevent.md)
+  : Delete a calendar event
+- [`suso_gql_deletemap()`](https://michael-cw.github.io/susographql/reference/suso_gql_deletemap.md)
+  : Delete map
+- [`suso_gql_deleteuserfrommap()`](https://michael-cw.github.io/susographql/reference/suso_gql_deleteuserfrommap.md)
+  : Delete user from map
+- [`suso_gql_interviews()`](https://michael-cw.github.io/susographql/reference/suso_gql_interviews.md)
+  : Get all interviews
+- [`suso_gql_mapreport()`](https://michael-cw.github.io/susographql/reference/suso_gql_mapreport.md)
+  : Get the map report
+- [`suso_gql_maps()`](https://michael-cw.github.io/susographql/reference/suso_gql_maps.md)
+  : Get all maps
+- [`suso_gql_pwcheck()`](https://michael-cw.github.io/susographql/reference/suso_gql_pwcheck.md)
+  : Utility function to check if credentials are correct
+- [`suso_gql_questionnaireitems()`](https://michael-cw.github.io/susographql/reference/suso_gql_questionnaireitems.md)
+  : Get all Questions in a Questionnaires
+- [`suso_gql_questionnaires()`](https://michael-cw.github.io/susographql/reference/suso_gql_questionnaires.md)
+  : Get all Questionnaires
+- [`suso_gql_questions()`](https://michael-cw.github.io/susographql/reference/suso_gql_questions.md)
+  : Get all Questions in a Questionnaires
+- [`suso_gql_updatecalendarevent()`](https://michael-cw.github.io/susographql/reference/suso_gql_updatecalendarevent.md)
+  : Update a calendar event
+- [`suso_gql_uploadmap()`](https://michael-cw.github.io/susographql/reference/suso_gql_uploadmap.md)
+  : Upload map to server
+- [`suso_gql_users()`](https://michael-cw.github.io/susographql/reference/suso_gql_users.md)
+  : Get user information
+- [`susoop_num`](https://michael-cw.github.io/susographql/reference/susoop_num.md)
+  : List object for Survey Solutions GraphQl numeric operator selection
+- [`susoop_str`](https://michael-cw.github.io/susographql/reference/susoop_str.md)
+  : List object for Survey Solutions GraphQl character operator
+  selection
+- [`eq()`](https://michael-cw.github.io/susographql/reference/transformers.numeric.md)
+  [`neq()`](https://michael-cw.github.io/susographql/reference/transformers.numeric.md)
+  [`inbetw()`](https://michael-cw.github.io/susographql/reference/transformers.numeric.md)
+  [`ninbetw()`](https://michael-cw.github.io/susographql/reference/transformers.numeric.md)
+  [`gt()`](https://michael-cw.github.io/susographql/reference/transformers.numeric.md)
+  [`ngt()`](https://michael-cw.github.io/susographql/reference/transformers.numeric.md)
+  [`gte()`](https://michael-cw.github.io/susographql/reference/transformers.numeric.md)
+  [`ngte()`](https://michael-cw.github.io/susographql/reference/transformers.numeric.md)
+  [`lt()`](https://michael-cw.github.io/susographql/reference/transformers.numeric.md)
+  [`nlt()`](https://michael-cw.github.io/susographql/reference/transformers.numeric.md)
+  [`lte()`](https://michael-cw.github.io/susographql/reference/transformers.numeric.md)
+  [`nlte()`](https://michael-cw.github.io/susographql/reference/transformers.numeric.md)
+  : Utility Functions for numeric operator selection
+- [`contains()`](https://michael-cw.github.io/susographql/reference/transformers.string.md)
+  [`endsWith()`](https://michael-cw.github.io/susographql/reference/transformers.string.md)
+  [`ncontains()`](https://michael-cw.github.io/susographql/reference/transformers.string.md)
+  [`nendsWith()`](https://michael-cw.github.io/susographql/reference/transformers.string.md)
+  [`nstartsWith()`](https://michael-cw.github.io/susographql/reference/transformers.string.md)
+  [`startsWith()`](https://michael-cw.github.io/susographql/reference/transformers.string.md)
+  [`inclu()`](https://michael-cw.github.io/susographql/reference/transformers.string.md)
+  [`ninclu()`](https://michael-cw.github.io/susographql/reference/transformers.string.md)
+  : Utility Functions for string operator selection
+
+# Articles
+
+### All vignettes
+
+- [Using skip and take in a
+  loop](https://michael-cw.github.io/susographql/articles/loop_skip_take.md):
