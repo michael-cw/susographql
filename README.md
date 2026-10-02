@@ -30,7 +30,7 @@ query filters, elevating the user experience and broadening your data
 manipulation and retrieval capabilities. Dive into the details of the
 available Survey Solutions GraphQL queries and mutations in the
 comprehensive [API
-documentation](https://demo.mysurvey.solutions/graphql/).
+documentation](https://demo.mysurvey.solutions/graphql/schema).
 
 While `susographql` is crafted as a “bare-bone” API client, delivering
 data largely in its original server format, it offers users unmatched
@@ -70,7 +70,7 @@ devtools::install_github("michael-cw/susographql")
     Server](https://mysurvey.solutions/en/) or request a free [Personal
     Demo Server
     (PDS)](https://pds.mysurvey.solutions/PersonalDemoServerRequest)
-    (for testing only\!\!).
+    (for testing only!!).
 2.  Set up your [API user and
     credentials](https://docs.mysurvey.solutions/headquarters/accounts/teams-and-roles-tab-creating-user-accounts/).
 3.  Use the credentials to connect to the server.
@@ -111,7 +111,7 @@ Solutions](https://docs.mysurvey.solutions/release-notes/).
 
 </div>
 
-[^1]:  The [SurveySolutionsAPIv2 (httr2
+[^1]: The [SurveySolutionsAPIv2 (httr2
     version)](https://github.com/michael-cw/SurveySolutionsAPIv2)
     package uses several of the functions from the `susographql`
     package.

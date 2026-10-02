@@ -1,13 +1,13 @@
 Package: susographql
 Type: Package
 Title: Comprehensive Interface to the Survey Solutions 'GraphQL' API
-Version: 0.1.6.9000
+Version: 0.1.7
 Authors@R: c(
-    person("Michael", "Wild", , "mwild@worldbank.org", role = c("cre", "aut", "cph"))
+    person("Michael", "Wild", , "michael.wild@me.com", role = c("cre", "aut", "cph"))
    )
 Description: Provides a complete suite of tools for interacting
     with the Survey Solutions 'GraphQL' API
-    <https://demo.mysurvey.solutions/graphql/>. This package encompasses
+    <https://demo.mysurvey.solutions/>. This package encompasses
     all currently available queries and mutations, including the latest
     features for map uploads. It is built on the modern 'httr2' package,
     offering a streamlined and efficient interface without relying on
@@ -21,17 +21,14 @@ Imports:
     curl (>= 5.1.0),
     glue,
     httr2,
-    jsonlite,
-    readr,
-    stringr,
     data.table,
     withr,
     cli (>= 3.0.0),
     rlang (>= 1.1.0),
     lubridate
 Depends:
-    R (>= 3.6)
-RoxygenNote: 7.2.3
+    R (>= 4.1.0)
+RoxygenNote: 7.3.2
 Suggests: 
     knitr,
     rmarkdown,

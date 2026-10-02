@@ -1,5 +1,11 @@
 # susographql (development version)
 
+# susographql 0.1.7
+
+* Updated maintainer contact email address.
+* Increased minimum R dependency to R >= 4.1.0 due to use of base pipe `|>` and lambda `\(...)` syntax.
+* Removed unused imports (`jsonlite`, `readr`, `stringr`).
+
 # susographql 0.1.4
 
 * stable release
