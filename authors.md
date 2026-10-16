@@ -7,7 +7,7 @@
 ## Citation
 
 Source:
-[`DESCRIPTION`](https://github.com/michael-cw/susographql/blob/main/DESCRIPTION)
+[`DESCRIPTION`](https://github.com/michael-cw/susographql/blob/v0.1.7/DESCRIPTION)
 
 Wild M (2026). *susographql: Comprehensive Interface to the Survey
 Solutions 'GraphQL' API*. R package version 0.1.7,

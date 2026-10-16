@@ -4,6 +4,8 @@
 
 ## susographql 0.1.7
 
+CRAN release: 2026-10-03
+
 - Updated maintainer contact email address.
 - Increased minimum R dependency to R \>= 4.1.0 due to use of base pipe
   `|>` and lambda `\(...)` syntax.

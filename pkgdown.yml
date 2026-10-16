@@ -3,7 +3,7 @@ pkgdown: 2.2.1
 pkgdown_sha: ~
 articles:
   articles/loop_skip_take: loop_skip_take.html
-last_built: 2026-10-02T21:25Z
+last_built: 2026-10-16T07:51Z
 urls:
   reference: https://michael-cw.github.io/susographql/reference
   article: https://michael-cw.github.io/susographql/articles
